@@ -9262,7 +9262,7 @@
             "read_only": true,
             "parameters": {
                 "url": {
-                    "description": "url",
+                    "description": "Url",
                     "order": 0,
                     "data_type": "string",
                     "required": true,
