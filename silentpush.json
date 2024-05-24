@@ -6031,7 +6031,7 @@
             "action": "forward padns lookup",
             "identifier": "forward_padns_lookup",
             "description": "Forward PADNS lookup",
-            "verbose": "Scan through Silent Push's passive DNS data and obtain information based on various parameters. The first_seen_after, first_seen_before, last_seen_before, last_seen_after and as_of parameters have the following time input options: <ul> <li>fixed date: yyyy-mm-dd (2021-07-09)</li> <li>fixed time in epoch format: number (1625834953)</li> <li>relative time seconds ago: negative number (-172800)</li> <li>relative fixed time period ago: negative number with time period (-36h / -5d / -3w / -6m) h: hours, d: days, w: weeks, m: months</li></ul>",
+            "verbose": "Scan through Silent Push's passive DNS data and obtain information based on various parameters. The first_seen_after, first_seen_before, last_seen_before, last_seen_after and as_of parameters have the following time input options: <ul> <li>fixed date: yyyy-mm-dd (2021-07-09)</li> <li>fixed time in epoch format: number (1625834953)</li> <li>relative time seconds ago: negative number (-172800)</li> <li>relative fixed time period ago: negative number with time period (-36h / -5d / -3w / -6m) h: hours, d: days, w: weeks, m: months</li></ul>.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -6500,7 +6500,7 @@
             "action": "reverse padns lookup",
             "identifier": "reverse_padns_lookup",
             "description": "Reverse PADNS lookup",
-            "verbose": "Scan through Silent Push's passive DNS data and obtain information based on various parameters. The first_seen_after, first_seen_before, last_seen_before, last_seen_after and as_of parameters have the following time input options: <ul> <li>fixed date: yyyy-mm-dd (2021-07-09)</li> <li>fixed time in epoch format: number (1625834953)</li> <li>relative time seconds ago: negative number (-172800)</li> <li>relative fixed time period ago: negative number with time period (-36h / -5d / -3w / -6m) h: hours, d: days, w: weeks, m: months</li></ul>",
+            "verbose": "Scan through Silent Push's passive DNS data and obtain information based on various parameters. The first_seen_after, first_seen_before, last_seen_before, last_seen_after and as_of parameters have the following time input options: <ul> <li>fixed date: yyyy-mm-dd (2021-07-09)</li> <li>fixed time in epoch format: number (1625834953)</li> <li>relative time seconds ago: negative number (-172800)</li> <li>relative fixed time period ago: negative number with time period (-36h / -5d / -3w / -6m) h: hours, d: days, w: weeks, m: months</li></ul>.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
@@ -6557,37 +6557,37 @@
                 },
                 "first_seen_after": {
                     "description": "The first_seen timestamp must be on or after this time",
-                    "order": 6,
+                    "order": 5,
                     "data_type": "string"
                 },
                 "first_seen_before": {
                     "description": "The first_seen timestamp must be on or before this time",
-                    "order": 7,
+                    "order": 6,
                     "data_type": "string"
                 },
                 "last_seen_after": {
                     "description": "The last_seen timestamp must be on or after this time",
-                    "order": 8,
+                    "order": 7,
                     "data_type": "string"
                 },
                 "last_seen_before": {
                     "description": "The last_seen timestamp must be on or before this time",
-                    "order": 9,
+                    "order": 8,
                     "data_type": "string"
                 },
                 "as_of": {
                     "description": "Return results where the as_of timestamp equivalent is between the first_seen and the last_seen timestamp of record",
-                    "order": 10,
+                    "order": 9,
                     "data_type": "string"
                 },
                 "sort": {
                     "description": "Return results in specified order(asc or desc) according to columns: column/order (comma-separated)",
-                    "order": 11,
+                    "order": 10,
                     "data_type": "string"
                 },
                 "output_format": {
                     "description": "Whether to use Silent Push padns output format or cof (common output format) (Defaults to Silent Push API's behaviour)",
-                    "order": 12,
+                    "order": 11,
                     "data_type": "string",
                     "value_list": [
                         "PADNS",
@@ -6596,7 +6596,7 @@
                 },
                 "prefer": {
                     "description": "Prefer to wait for results for longer running queries or to return job_id immediately (Defaults to Silent Push API's behaviour)",
-                    "order": 13,
+                    "order": 12,
                     "data_type": "string",
                     "value_list": [
                         "Result",
@@ -6605,22 +6605,22 @@
                 },
                 "with_metadata": {
                     "description": "Includes a metadata object in the response, containing returned results, total results, and job_id",
-                    "order": 14,
+                    "order": 13,
                     "data_type": "boolean"
                 },
                 "max_wait": {
                     "description": "Number of seconds to wait for results before returning a job_id, with a range from 0 to 25 seconds (Defaults to Silent Push API's behaviour)",
-                    "order": 15,
+                    "order": 14,
                     "data_type": "numeric"
                 },
                 "skip": {
                     "description": "Number of results to skip",
-                    "order": 16,
+                    "order": 15,
                     "data_type": "numeric"
                 },
                 "limit": {
                     "description": "Number of results to return (Defaults to Silent Push API's behaviour)",
-                    "order": 17,
+                    "order": 16,
                     "data_type": "numeric"
                 }
             },
