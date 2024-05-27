@@ -15,15 +15,15 @@
 
 import os
 import tempfile
+from urllib.parse import urlencode
+
 import phantom.app as phantom
 import phantom.rules as ph_rules
 from phantom.vault import Vault as Vault
 from phantom_common import paths
 
 import silentpush_consts as consts
-
 from actions import BaseAction
-from urllib.parse import urlencode
 
 
 class LiveUrlScreenshot(BaseAction):
@@ -99,7 +99,8 @@ class LiveUrlScreenshot(BaseAction):
         return self._action_result.set_status(phantom.APP_SUCCESS, "Screenshot downloaded successfully"), image
 
     def __save_screenshot(self, file_name, image):
-        """Save the screenshot to a temporary file, add it to the vault, and return the status of the operation along with the vault ID and meta information.
+        """Save the screenshot to a temporary file, add it to the vault, and return the
+        status of the operation along with the vault ID and meta information.
 
         Args:
             self: The object instance.
@@ -148,7 +149,8 @@ class LiveUrlScreenshot(BaseAction):
 
         self._action_result.add_data(response)
 
-        if response.get("response", {}).get("screenshot", {}).get("message") and response.get("response", {}).get("screenshot", {}).get("response") != 200:
+        if response.get("response", {}).get("screenshot", {}).get("message") and \
+                response.get("response", {}).get("screenshot", {}).get("response") != 200:
             return self._action_result.set_status(phantom.APP_ERROR, response.get("response", {}).get("screenshot", {}).get("message"))
         elif not response.get("response", {}).get("screenshot", {}).get("message"):
             return self._action_result.set_status(phantom.APP_ERROR, "Could not find meta information of the screenshot's")

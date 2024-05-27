@@ -14,9 +14,10 @@
 # and limitations under the License.
 
 import json
+import time
+
 import phantom.app as phantom
 import requests
-import time
 from bs4 import BeautifulSoup
 
 import silentpush_consts as consts

@@ -19,6 +19,7 @@ from unittest.mock import patch
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
+
 from . import silentpush_constant, silentpush_responses
 
 
@@ -68,7 +69,8 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?url=www.silentpush.com&platform=Desktop&OS=Windows&browser=Firefox&region=US',
+            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?url=\
+                www.silentpush.com&platform=Desktop&OS=Windows&browser=Firefox&region=US',
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -102,7 +104,8 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "failed")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?url=www.silentpush.com&platform=Desktop&OS=Windows&browser=Firefox&region=US',
+            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?url\
+                =www.silentpush.com&platform=Desktop&OS=Windows&browser=Firefox&region=US',
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},

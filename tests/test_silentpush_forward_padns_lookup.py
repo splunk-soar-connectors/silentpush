@@ -19,8 +19,8 @@ from unittest.mock import patch
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
-from . import silentpush_constant, silentpush_responses
 
+from . import silentpush_constant, silentpush_responses
 
 DOMAIN_REGEX = "^sil[[:alpha:]]{3}\\.[a-z]{2,}$"
 SORT = "last_seen/desc"

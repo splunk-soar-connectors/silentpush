@@ -13,8 +13,9 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-import phantom.app as phantom
 from urllib.parse import urlencode
+
+import phantom.app as phantom
 
 import silentpush_consts as consts
 from actions import BaseAction

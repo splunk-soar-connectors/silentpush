@@ -13,13 +13,14 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-import requests
 import unittest
+from unittest.mock import Mock, patch
+
+import requests
 from parameterized import parameterized
 from phantom.action_result import ActionResult
-from unittest.mock import Mock, patch
-from silentpush_utils import SilentpushUtils, RetVal, Validator
 
+from silentpush_utils import RetVal, SilentpushUtils, Validator
 
 PARAM_VALUE = "{{param_value}}"
 

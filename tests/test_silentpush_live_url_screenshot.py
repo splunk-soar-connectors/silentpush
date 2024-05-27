@@ -15,10 +15,11 @@
 
 import json
 import unittest
-from unittest.mock import patch, call
+from unittest.mock import call, patch
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
+
 from . import silentpush_constant, silentpush_responses
 
 
@@ -66,7 +67,7 @@ class SilentpushAction(unittest.TestCase):
 
         with patch('phantom.rules.vault_add') as mock_vault_add, patch('phantom.rules.vault_info') as mock_vault_info:
             # Mock the return values of ph_rules.vault_add() and ph_rules.vault_info()
-            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")
+            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")  # pragma: allowlist secret
             mock_vault_info.return_value = (True, "meta_info", silentpush_responses.VAULT_META_INFO)
 
             ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
@@ -144,7 +145,7 @@ class SilentpushAction(unittest.TestCase):
 
         with patch('phantom.rules.vault_add') as mock_vault_add, patch('phantom.rules.vault_info') as mock_vault_info:
             # Mock the return values of ph_rules.vault_add() and ph_rules.vault_info()
-            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")
+            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")  # pragma: allowlist secret
             mock_vault_info.return_value = (True, "meta_info", silentpush_responses.VAULT_META_INFO)
 
             ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
@@ -187,7 +188,7 @@ class SilentpushAction(unittest.TestCase):
 
         with patch('phantom.rules.vault_add') as mock_vault_add:
             # Mock the return values of ph_rules.vault_add() and ph_rules.vault_info()
-            mock_vault_add.return_value = (False, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")
+            mock_vault_add.return_value = (False, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")  # pragma: allowlist secret
 
             ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
             ret_val = json.loads(ret_val)
@@ -214,7 +215,7 @@ class SilentpushAction(unittest.TestCase):
 
         with patch('phantom.rules.vault_add') as mock_vault_add, patch('phantom.rules.vault_info') as mock_vault_info:
             # Mock the return values of ph_rules.vault_add() and ph_rules.vault_info()
-            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")
+            mock_vault_add.return_value = (True, "Success", "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb")  # pragma: allowlist secret
             mock_vault_info.return_value = (True, "meta_info", "")
 
             ret_val = self.connector._handle_action(json.dumps(self.test_json), None)

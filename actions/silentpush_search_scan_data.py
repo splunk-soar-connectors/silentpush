@@ -13,12 +13,12 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
+from urllib.parse import urlencode
+
 import phantom.app as phantom
 
 import silentpush_consts as consts
-
 from actions import BaseAction
-from urllib.parse import urlencode
 
 
 class SearchScanData(BaseAction):

@@ -15,11 +15,13 @@
 
 import json
 import unittest
+from unittest.mock import call, patch
+
 from parameterized import parameterized
-from unittest.mock import patch, call
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
+
 from . import silentpush_constant, silentpush_responses
 
 

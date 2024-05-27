@@ -16,7 +16,6 @@
 import phantom.app as phantom
 
 import silentpush_consts as consts
-
 from actions import BaseAction
 
 

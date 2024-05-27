@@ -15,12 +15,14 @@
 
 import json
 import unittest
-from parameterized import parameterized
 from unittest.mock import patch
 from urllib.parse import urlencode
 
+from parameterized import parameterized
+
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
+
 from . import silentpush_constant, silentpush_responses
 
 

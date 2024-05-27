@@ -13,12 +13,12 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
+from ipaddress import IPv4Address, ip_address
+
 import phantom.app as phantom
 
 import silentpush_consts as consts
-
 from actions import BaseAction
-from ipaddress import ip_address, IPv4Address
 
 
 class ListIpInformation(BaseAction):

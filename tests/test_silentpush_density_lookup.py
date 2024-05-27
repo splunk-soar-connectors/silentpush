@@ -16,10 +16,12 @@
 import json
 import unittest
 from unittest.mock import patch
+
 from parameterized import parameterized
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
+
 from . import silentpush_constant, silentpush_responses
 
 
