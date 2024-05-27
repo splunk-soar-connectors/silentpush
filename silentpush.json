@@ -9115,7 +9115,9 @@
                 {
                     "data_path": "action_result.data.*.ns_entropy_score",
                     "data_type": "numeric",
-                    "example_values": 10
+                    "example_values": [
+                        10
+                    ]
                 },
                 {
                     "data_path": "action_result.data.*.asn_rank_score",
