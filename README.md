@@ -2,15 +2,13 @@
 # Silent Push
 
 Publisher: Splunk Community  
-Connector Version: 1.0.0  
+Connector Version: 1.0.1  
 Product Vendor: Silent Push  
 Product Name: Silent Push  
 Product Version Supported (regex): ".\*"  
 Minimum Product Version: 6.2.0  
 
 This connector integrates with the Silent Push system to gain insights into domain/IP information, reputations, enrichment, and infratag related details. It also provides functionality to live-scan URLs and take screenshots of them. Additionally, it allows fetching future attack feeds from the Silent Push system
-
-# silentpush
 
 ### Configuration Variables
 The below configuration variables are required for this Connector to operate.  These variables are specified when configuring a Silent Push asset in SOAR.
