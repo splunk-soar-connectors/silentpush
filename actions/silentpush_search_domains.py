@@ -36,7 +36,7 @@ class DomainSearch(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("domain_search")
+            consts.EXECUTION_START_MESSAGE.format("domain_search")
         )
 
         ret_val = self.__validate_params()

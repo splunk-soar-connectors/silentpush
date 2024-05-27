@@ -35,7 +35,7 @@ class GetEnrichmentData(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("get_enrichment_data")
+            consts.EXECUTION_START_MESSAGE.format("get_enrichment_data")
         )
 
         ret_val = self.__validate_params()

@@ -36,7 +36,7 @@ class LiveUrlScan(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("live_url_scan")
+            consts.EXECUTION_START_MESSAGE.format("live_url_scan")
         )
 
         ret_val = self.__validate_params()

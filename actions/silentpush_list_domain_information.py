@@ -38,7 +38,7 @@ class ListDomainInformation(BaseAction):
         Step 9: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("list_domain_information")
+            consts.EXECUTION_START_MESSAGE.format("list_domain_information")
         )
 
         ret_val = self.__validate_params()

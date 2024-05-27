@@ -14,9 +14,8 @@
 # and limitations under the License.
 
 # messages
-EXECUTION_START_MSG = "Executing {0} action"
-TEST_CONNECTIVITY_START_MSG = "Connecting to {0}"
-ON_POLL_START_MSG = "Executing poll for the {0}"
+EXECUTION_START_MESSAGE = "Executing {0} action"
+TEST_CONNECTIVITY_START_MESSAGE = "Connecting to {0}"
 SUCCESS_TEST_CONNECTIVITY = "Test Connectivity Passed"
 SUCCESS_ON_POLL = "Poll executed successfully"
 ERROR_TEST_CONNECTIVITY = "Test Connectivity Failed"

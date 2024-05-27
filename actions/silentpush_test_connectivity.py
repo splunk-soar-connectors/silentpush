@@ -34,7 +34,7 @@ class TestConnectivity(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(consts.TEST_CONNECTIVITY_START_MSG.format('Silent Push'))
+        self._connector.save_progress(consts.TEST_CONNECTIVITY_START_MESSAGE.format('Silent Push'))
 
         endpoint, method = self.__get_request_url_and_method()
 

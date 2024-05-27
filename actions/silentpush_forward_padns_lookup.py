@@ -36,7 +36,7 @@ class ForwardPadnsLookup(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("forward_padns_lookup")
+            consts.EXECUTION_START_MESSAGE.format("forward_padns_lookup")
         )
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):

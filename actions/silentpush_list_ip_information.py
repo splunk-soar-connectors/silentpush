@@ -36,7 +36,7 @@ class ListIpInformation(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(
-            consts.EXECUTION_START_MSG.format("list_ip_information")
+            consts.EXECUTION_START_MESSAGE.format("list_ip_information")
         )
 
         ret_val = self.__validate_and_separate_ips()
