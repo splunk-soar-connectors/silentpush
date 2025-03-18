@@ -1,6 +1,6 @@
 # File: test_silentpush_get_indicators_of_future_attack_feed.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ class SilentpushAction(unittest.TestCase):
     def setUp(self):
         self.connector = SilentpushConnector()
         self.test_json = dict(silentpush_constant.TEST_JSON)
-        self.test_json['config'] = {**self.test_json['config'], **silentpush_constant.APIKEY_AUTH_CONFIG}
+        self.test_json["config"] = {**self.test_json["config"], **silentpush_constant.APIKEY_AUTH_CONFIG}
         self.test_json.update({"action": "get indicators of future attack feed", "identifier": "get_indicators_of_future_attack_feed"})
         self.run_job_endpoint = consts.GET_FUTURE_ATTACK_FEED_ENDPOINT
 
@@ -55,17 +55,17 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 1)
-        self.assertEqual(ret_val['status'], 'success')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 1)
+        self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}'
-            f'{self.run_job_endpoint}?page=1&limit=3&distinct=False&source_uuids=a9e08c54-0d97-481e-93b5-228d34495d7f'
-            f'&order=-total_ioc%2C-total_source_score&state=Feed&advanced=advanced',
+            f"{self.test_json['config']['base_url']}"
+            f"{self.run_job_endpoint}?page=1&limit=3&distinct=False&source_uuids=a9e08c54-0d97-481e-93b5-228d34495d7f"
+            f"&order=-total_ioc%2C-total_source_score&state=Feed&advanced=advanced",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
-            headers={'X-API-KEY': '<dummy_api_token>'}
+            headers={"X-API-KEY": "<dummy_api_token>"},
         )
 
     def test_get_future_attack_feed_invalid(self, mock_get):
@@ -87,17 +87,17 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}'
-            f'{self.run_job_endpoint}?page=1&limit=3&distinct=False&source_uuids=a9e08c54-0d97-481e-93b5-228d34495d7f'
-            f'&order=-total_ioc%2C-total_source_score&state=Feed&advanced=advanced',
+            f"{self.test_json['config']['base_url']}"
+            f"{self.run_job_endpoint}?page=1&limit=3&distinct=False&source_uuids=a9e08c54-0d97-481e-93b5-228d34495d7f"
+            f"&order=-total_ioc%2C-total_source_score&state=Feed&advanced=advanced",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
-            headers={'X-API-KEY': '<dummy_api_token>'}
+            headers={"X-API-KEY": "<dummy_api_token>"},
         )
 
     def test_get_future_attack_feed_page_type_invalid(self, mock_get):
@@ -115,9 +115,9 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")
 
     def test_get_future_attack_feed_limit_type_invalid(self, mock_get):
         """Test the invalid type case for the get indicators of future attack feed action.
@@ -134,6 +134,6 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")

@@ -1,6 +1,6 @@
 # File: silentpush_list_ip_information.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class ListIpInformation(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("list_ip_information")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("list_ip_information"))
 
         ret_val = self.__validate_and_separate_ips()
         if phantom.is_fail(ret_val):
@@ -63,14 +61,10 @@ class ListIpInformation(BaseAction):
         self._param["ipv4"] = []
         self._param["ipv6"] = []
         invalid_ip = []
-        ips = [
-            final_ip for ip in self._param["ips"].split(",") if (final_ip := ip.strip())
-        ]
+        ips = [final_ip for ip in self._param["ips"].split(",") if (final_ip := ip.strip())]
 
         if not ips:
-            return self._action_result.set_status(
-                phantom.APP_ERROR, "Please provide a valid list of IPs"
-            )
+            return self._action_result.set_status(phantom.APP_ERROR, "Please provide a valid list of IPs")
 
         for ip in ips:
             if self.__valid_ip_address(ip) == "IPv4":
@@ -97,15 +91,11 @@ class ListIpInformation(BaseAction):
 
         body["ips"] = self._param[resource]
 
-        return self._connector.util.generate_json_body(
-            body, allow_none, allow_empty, self._param, default_values
-        )
+        return self._connector.util.generate_json_body(body, allow_none, allow_empty, self._param, default_values)
 
     def __get_request_url_and_method(self, resource):
         """Get request endpoint and method."""
-        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace(
-            "{{resource}}", str(resource)
-        )
+        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace("{{resource}}", str(resource))
 
         return endpoint, "post"
 
@@ -131,9 +121,7 @@ class ListIpInformation(BaseAction):
             request_body = self.__get_request_body("ipv4")
             endpoint, method = self.__get_request_url_and_method("ipv4")
 
-            ret_val, ipv4_response = self.__make_rest_call(
-                url=endpoint, method=method, body=request_body
-            )
+            ret_val, ipv4_response = self.__make_rest_call(url=endpoint, method=method, body=request_body)
 
             if phantom.is_fail(ret_val):
                 return self._action_result.get_status(), None, None
@@ -142,9 +130,7 @@ class ListIpInformation(BaseAction):
             request_body = self.__get_request_body("ipv6")
             endpoint, method = self.__get_request_url_and_method("ipv6")
 
-            ret_val, ipv6_response = self.__make_rest_call(
-                url=endpoint, method=method, body=request_body
-            )
+            ret_val, ipv6_response = self.__make_rest_call(url=endpoint, method=method, body=request_body)
 
             if phantom.is_fail(ret_val):
                 return self._action_result.get_status(), None, None
@@ -174,6 +160,4 @@ class ListIpInformation(BaseAction):
         """Process response received from the third party API."""
         self._action_result.add_data(response)
 
-        return self._action_result.set_status(
-            phantom.APP_SUCCESS, consts.ACTION_LIST_DOMAIN_INFO_SUCCESS_RESPONSE
-        )
+        return self._action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_LIST_DOMAIN_INFO_SUCCESS_RESPONSE)

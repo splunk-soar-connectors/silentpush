@@ -1,6 +1,6 @@
 # File: silentpush_search_domains.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class DomainSearch(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("domain_search")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("domain_search"))
 
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):
@@ -46,9 +44,7 @@ class DomainSearch(BaseAction):
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint, method=method, param=query_params
-        )
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
@@ -106,9 +102,7 @@ class DomainSearch(BaseAction):
             self._param["skip"] = value
 
         if "limit" in self._param:
-            ret_val, value = self._connector.validator.validate_integer(
-                self._action_result, self._param.get("limit"), "limit"
-            )
+            ret_val, value = self._connector.validator.validate_integer(self._action_result, self._param.get("limit"), "limit")
 
             if not ret_val:
                 return ret_val
@@ -146,9 +140,7 @@ class DomainSearch(BaseAction):
 
         endpoint = consts.DOMAIN_SEARCH_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace(
-                "{{##}}".replace("##", parameter), str(self._param.get(parameter))
-            )
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
 
         return endpoint, "get"
 
@@ -162,7 +154,7 @@ class DomainSearch(BaseAction):
         }
 
         if param:
-            args["endpoint"] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         args["error_path"] = "response.error"
         return self._connector.util.make_rest_call(**args)

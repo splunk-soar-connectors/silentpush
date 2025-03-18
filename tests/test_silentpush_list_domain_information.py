@@ -1,6 +1,6 @@
 # File: test_silentpush_list_domain_information.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -61,11 +61,8 @@ class SilentpushAction(unittest.TestCase):
             }
         ]
 
-        req_data = {
-            "domains": ["google.com", "silentpush.com"]
-        }
+        req_data = {"domains": ["google.com", "silentpush.com"]}
         with patch("silentpush_utils.requests.post") as mock_post, patch("silentpush_utils.requests.get") as mock_get:
-
             mock_post.return_value.status_code = 200
             mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
             mock_post.return_value.json.return_value = silentpush_responses.LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP
@@ -82,29 +79,29 @@ class SilentpushAction(unittest.TestCase):
 
             expected_post_calls = [
                 call(
-                    f'{self.test_json["config"]["base_url"]}{self.run_domain_info_job_endpoint}',
+                    f"{self.test_json['config']['base_url']}{self.run_domain_info_job_endpoint}",
                     timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                     verify=False,
                     headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
                     json=req_data,
                 ),
                 call(
-                    f'{self.test_json["config"]["base_url"]}{self.run_risk_score_job_endpoint}',
+                    f"{self.test_json['config']['base_url']}{self.run_risk_score_job_endpoint}",
                     timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                     verify=False,
                     headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
                     json=req_data,
-                )
+                ),
             ]
             expected_get_calls = [
                 call(
-                    f'{self.test_json["config"]["base_url"]}{self.run_whois_info_job_endpoint.format("google.com")}',
+                    f"{self.test_json['config']['base_url']}{self.run_whois_info_job_endpoint.format('google.com')}",
                     timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                     verify=False,
                     headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
                 ),
                 call(
-                    f'{self.test_json["config"]["base_url"]}{self.run_whois_info_job_endpoint.format("silentpush.com")}',
+                    f"{self.test_json['config']['base_url']}{self.run_whois_info_job_endpoint.format('silentpush.com')}",
                     timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                     verify=False,
                     headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -127,16 +124,12 @@ class SilentpushAction(unittest.TestCase):
             }
         ]
 
-        req_data = {
-            "domains": ["silent"]
-        }
+        req_data = {"domains": ["silent"]}
 
         with patch("silentpush_utils.requests.post") as mock_post:
             mock_post.return_value.status_code = 400
             mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-            mock_post.return_value.json.return_value = (
-                silentpush_responses.LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP
-            )
+            mock_post.return_value.json.return_value = silentpush_responses.LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP
 
             ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
             ret_val = json.loads(ret_val)
@@ -145,21 +138,15 @@ class SilentpushAction(unittest.TestCase):
             self.assertEqual(ret_val["status"], "failed")
 
             mock_post.assert_called_with(
-                f'{self.test_json["config"]["base_url"]}{self.run_domain_info_job_endpoint}',
+                f"{self.test_json['config']['base_url']}{self.run_domain_info_job_endpoint}",
                 timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                 verify=False,
                 headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
                 json=req_data,
             )
 
-    @parameterized.expand([
-        ["silentpush.com", "test", False],
-        ["silentpush.com", False, "test"],
-        [",,,,", False, False]
-    ])
-    def test_list_domain_information_boolean_invalid(
-        self, domains, risk_score, whois
-    ):
+    @parameterized.expand([["silentpush.com", "test", False], ["silentpush.com", False, "test"], [",,,,", False, False]])
+    def test_list_domain_information_boolean_invalid(self, domains, risk_score, whois):
         """
         Test the invalid case for the list domain information action.
 

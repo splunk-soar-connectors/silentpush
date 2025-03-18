@@ -1,6 +1,6 @@
 # File: silentpush_utils.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -31,7 +31,7 @@ class RetVal(tuple):
         return tuple.__new__(RetVal, (val1, val2))
 
 
-class SilentpushUtils(object):
+class SilentpushUtils:
     """This class holds all the util methods."""
 
     def __init__(self, connector=None):
@@ -55,7 +55,7 @@ class SilentpushUtils(object):
                 elif len(e.args) == 1:
                     error_msg = e.args[0]
         except Exception as e:
-            self._connector.error_print(f"Error occurred while fetching exception information. Details: {str(e)}")
+            self._connector.error_print(f"Error occurred while fetching exception information. Details: {e!s}")
 
         if not error_code:
             error_text = f"Error message: {error_msg}"
@@ -69,9 +69,9 @@ class SilentpushUtils(object):
             return RetVal(phantom.APP_SUCCESS, {})
 
         return RetVal(
-            action_result.set_status(
-                phantom.APP_ERROR, "Empty response and no information in the header,"
-                                   " Status Code: {}".format(response.status_code)), None)
+            action_result.set_status(phantom.APP_ERROR, f"Empty response and no information in the header, Status Code: {response.status_code}"),
+            None,
+        )
 
     def _process_html_response(self, response, action_result):
         # An html response, treat it like an error
@@ -104,11 +104,7 @@ class SilentpushUtils(object):
         try:
             resp_json = r.json()
         except Exception as e:
-            return RetVal(
-                action_result.set_status(
-                    phantom.APP_ERROR, "Unable to parse JSON response. Error: {0}".format(str(e))
-                ), None
-            )
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Unable to parse JSON response. Error: {e!s}"), None)
 
         # Please specify the status codes here
         self._connector.error_print("Response", resp_json)
@@ -121,16 +117,13 @@ class SilentpushUtils(object):
                 return RetVal(phantom.APP_SUCCESS, resp_json)
 
         # You should process the error returned in the json
-        message = "Error from server. Status Code: {0} Data from server: {1}".format(
-            r.status_code,
-            r.text.replace('{', '{{').replace('}', '}}')
-        )
+        message = "Error from server. Status Code: {} Data from server: {}".format(r.status_code, r.text.replace("{", "{{").replace("}", "}}"))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message))
 
     def find_value_by_pattern(self, data, pattern):
         """Find value in JSON data using pattern."""
-        keys = pattern.split('.')
+        keys = pattern.split(".")
         current_data = data
 
         for key in keys:
@@ -152,22 +145,22 @@ class SilentpushUtils(object):
 
     def _process_response(self, r, action_result, error_path=None):
         # store the r_text in debug data, it will get dumped in the logs if the action fails
-        if hasattr(action_result, 'add_debug_data'):
-            action_result.add_debug_data({'r_status_code': r.status_code})
-            action_result.add_debug_data({'r_text': r.text})
-            action_result.add_debug_data({'r_headers': r.headers})
+        if hasattr(action_result, "add_debug_data"):
+            action_result.add_debug_data({"r_status_code": r.status_code})
+            action_result.add_debug_data({"r_text": r.text})
+            action_result.add_debug_data({"r_headers": r.headers})
 
         # Process each 'Content-Type' of response separately
 
         # Process a json response
-        if 'json' in r.headers.get('Content-Type', ''):
+        if "json" in r.headers.get("Content-Type", ""):
             return self._process_json_response(r, action_result, error_path)
 
         # Process an HTML response, Do this no matter what the api talks.
         # There is a high chance of a PROXY in between phantom and the rest of
         # world, in case of errors, PROXY's return HTML, this function parses
         # the error and adds it to the action_result.
-        if 'html' in r.headers.get('Content-Type', '') and r.text:
+        if "html" in r.headers.get("Content-Type", "") and r.text:
             return self._process_html_response(r, action_result)
 
         # it's not content-type that is to be parsed, handle an empty response
@@ -175,9 +168,8 @@ class SilentpushUtils(object):
             return self._process_empty_response(r, action_result)
 
         # everything else is actually an error at this point
-        message = "Can't process response from server. Status Code: {0} Data from server: {1}".format(
-            r.status_code,
-            r.text.replace('{', '{{').replace('}', '}}')
+        message = "Can't process response from server. Status Code: {} Data from server: {}".format(
+            r.status_code, r.text.replace("{", "{{").replace("}", "}}")
         )
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
@@ -188,33 +180,26 @@ class SilentpushUtils(object):
         try:
             request_func = getattr(requests, method)
         except AttributeError:
-            return RetVal(
-                action_result.set_status(phantom.APP_ERROR, "Invalid method: {0}".format(method)),
-                resp_json
-            )
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Invalid method: {method}"), resp_json)
 
         # Create a URL to connect to
         url = f"{consts.BASE_URL.strip('/')}{endpoint}"
 
-        kwargs['headers'] = {
-            **self.get_auth_headers(self._connector.config),
-            **(kwargs.get('headers') or {})
-        }
+        kwargs["headers"] = {**self.get_auth_headers(self._connector.config), **(kwargs.get("headers") or {})}
 
         status, r = self.invoke_api(request_func, url, counter=0, **kwargs)
 
         if not status:
-            return RetVal(
-                action_result.set_status(
-                    phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(r))
-                ), resp_json
-            )
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Error Connecting to server. Details: {r!s}"), resp_json)
 
         return self._process_response(r, action_result, error_path)
 
     def make_rest_call_for_image(self, url, action_result):
         try:
-            response = requests.get(url, timeout=consts.REQUEST_DEFAULT_TIMEOUT, )
+            response = requests.get(
+                url,
+                timeout=consts.REQUEST_DEFAULT_TIMEOUT,
+            )
 
             if response.status_code == 200:
                 return action_result.set_status(phantom.APP_SUCCESS), response.content
@@ -225,10 +210,7 @@ class SilentpushUtils(object):
     def invoke_api(self, request_func, url, counter=0, **kwargs):
         try:
             r = request_func(
-                url,
-                timeout=consts.REQUEST_DEFAULT_TIMEOUT,
-                verify=self._connector.config.get("verify_server_cert", False),
-                **kwargs
+                url, timeout=consts.REQUEST_DEFAULT_TIMEOUT, verify=self._connector.config.get("verify_server_cert", False), **kwargs
             )
             return True, r
         except Exception as e:
@@ -242,20 +224,13 @@ class SilentpushUtils(object):
         headers = {}
 
         if config.get("api_key"):
-            headers['X-API-KEY'] = config.get("api_key")
+            headers["X-API-KEY"] = config.get("api_key")
 
         return headers
 
     def generate_json_body(self, body, allow_none, allow_empty, param, default_values):
         def _get_empty_value(_type):
-            empty_values = {
-                "string": "",
-                "boolean": "",
-                "integer": 0,
-                "float": 0,
-                "dict": {},
-                "list": []
-            }
+            empty_values = {"string": "", "boolean": "", "integer": 0, "float": 0, "dict": {}, "list": []}
             return empty_values.get(_type, "")
 
         def _handle_template_value(key, value, body):
@@ -277,7 +252,7 @@ class SilentpushUtils(object):
         def _format_value(input_body, body, path=()):
             for key, value in input_body.items():
                 if isinstance(value, dict):
-                    body[key] = _format_value(value, {}, path + (key,))
+                    body[key] = _format_value(value, {}, (*path, key))
                 else:
                     _handle_template_value(key, value, body)
             return body
@@ -287,7 +262,6 @@ class SilentpushUtils(object):
 
 
 class Validator:
-
     @staticmethod
     def validate_integer(action_result, parameter, key, allow_zero=False, allow_negative=False):
         """Check if the provided input parameter value is valid.
@@ -301,20 +275,16 @@ class Validator:
         """
         try:
             if not float(parameter).is_integer():
-                return action_result.set_status(phantom.APP_ERROR,
-                                                consts.ERROR_INVALID_INT_PARAM.format(key=key)), None
+                return action_result.set_status(phantom.APP_ERROR, consts.ERROR_INVALID_INT_PARAM.format(key=key)), None
 
             parameter = int(parameter)
         except Exception:
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_INVALID_INT_PARAM.format(key=key)), None
+            return action_result.set_status(phantom.APP_ERROR, consts.ERROR_INVALID_INT_PARAM.format(key=key)), None
 
         if not allow_zero and parameter == 0:
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_ZERO_INT_PARAM.format(key=key)), None
+            return action_result.set_status(phantom.APP_ERROR, consts.ERROR_ZERO_INT_PARAM.format(key=key)), None
         if not allow_negative and parameter < 0:
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_NEG_INT_PARAM.format(key=key)), None
+            return action_result.set_status(phantom.APP_ERROR, consts.ERROR_NEG_INT_PARAM.format(key=key)), None
 
         return phantom.APP_SUCCESS, parameter
 
@@ -328,17 +298,15 @@ class Validator:
         :returns: phantom.APP_SUCCESS/phantom.APP_ERROR and parameter value itself.
         """
         try:
-            parameter = json.loads(parameter.replace("\'", "'"))
+            parameter = json.loads(parameter.replace("'", "'"))
         except Exception:
             try:
                 parameter = eval(parameter)
             except Exception:
-                return action_result.set_status(phantom.APP_ERROR,
-                                                consts.ERROR_INVALID_JSON_PARAM.format(key=key)), None
+                return action_result.set_status(phantom.APP_ERROR, consts.ERROR_INVALID_JSON_PARAM.format(key=key)), None
 
         if not isinstance(parameter, dict):
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_INVALID_JSON_PARAM.format(key=key)), None
+            return action_result.set_status(phantom.APP_ERROR, consts.ERROR_INVALID_JSON_PARAM.format(key=key)), None
 
         return phantom.APP_SUCCESS, parameter
 
@@ -352,8 +320,7 @@ class Validator:
         :returns: phantom.APP_SUCCESS/phantom.APP_ERROR and parameter value itself.
         """
         if not isinstance(parameter, bool):
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_INVALID_BOOL_PARAM.format(key=key)), None
+            return action_result.set_status(phantom.APP_ERROR, consts.ERROR_INVALID_BOOL_PARAM.format(key=key)), None
 
         return phantom.APP_SUCCESS, parameter
 
@@ -369,8 +336,8 @@ class Validator:
         """
         parameter = parameter.lower()
         if parameter not in dropdown:
-            return action_result.set_status(phantom.APP_ERROR,
-                                            consts.ERROR_INVALID_SELECTION.format(
-                                                key, json.dumps(list(dropdown.keys())))), None
+            return action_result.set_status(
+                phantom.APP_ERROR, consts.ERROR_INVALID_SELECTION.format(key, json.dumps(list(dropdown.keys())))
+            ), None
 
         return phantom.APP_SUCCESS, dropdown.get(parameter)

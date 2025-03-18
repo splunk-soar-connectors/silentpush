@@ -1,6 +1,6 @@
 # File: silentpush_get_domain_certificates.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class GetDomainCertificates(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("get_domain_certificates")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("get_domain_certificates"))
 
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):
@@ -46,9 +44,7 @@ class GetDomainCertificates(BaseAction):
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint, method=method, param=query_params
-        )
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
@@ -82,9 +78,7 @@ class GetDomainCertificates(BaseAction):
             self._param["max_wait"] = value
 
         if "with_metadata" in self._param:
-            ret_val, value = self._connector.validator.validate_boolean(
-                self._action_result, self._param.get("with_metadata"), "with_metadata"
-            )
+            ret_val, value = self._connector.validator.validate_boolean(self._action_result, self._param.get("with_metadata"), "with_metadata")
 
             if not ret_val:
                 return ret_val
@@ -147,9 +141,7 @@ class GetDomainCertificates(BaseAction):
 
         endpoint = consts.GET_DOMAIN_CERTIFICATES_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace(
-                "{{##}}".replace("##", parameter), str(self._param.get(parameter))
-            )
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
 
         return endpoint, "get"
 
@@ -163,7 +155,7 @@ class GetDomainCertificates(BaseAction):
         }
 
         if param:
-            args["endpoint"] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         args["error_path"] = "response.error"
         return self._connector.util.make_rest_call(**args)
@@ -175,13 +167,7 @@ class GetDomainCertificates(BaseAction):
 
         self._action_result.add_data(response)
 
-        summary = {
-            "total_domain_certificates": len(
-                response.get("response", {}).get("domain_certificates", [])
-            )
-        }
+        summary = {"total_domain_certificates": len(response.get("response", {}).get("domain_certificates", []))}
         self._action_result.update_summary(summary)
 
-        return self._action_result.set_status(
-            phantom.APP_SUCCESS, consts.ACTION_DOMAIN_CERTIFICATES_SUCCESS_RESPONSE
-        )
+        return self._action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_DOMAIN_CERTIFICATES_SUCCESS_RESPONSE)

@@ -1,6 +1,6 @@
 # File: test_silentpush_get_job_status.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,10 +30,9 @@ class SilentpushAction(unittest.TestCase):
     def setUp(self):
         self.connector = SilentpushConnector()
         self.test_json = dict(silentpush_constant.TEST_JSON)
-        self.test_json['config'] = {**self.test_json['config'], **{}}
+        self.test_json["config"] = {**self.test_json["config"], **{}}
         self.test_json.update({"action": "get job status", "identifier": "get_job_status"})
-        self.run_job_endpoint = consts.GET_JOB_STATUS_ENDPOINT.replace(
-            "{{job_id}}", "6bd0ba36-9f30-4beb-8a7a-164123ecdc30")
+        self.run_job_endpoint = consts.GET_JOB_STATUS_ENDPOINT.replace("{{job_id}}", "6bd0ba36-9f30-4beb-8a7a-164123ecdc30")
 
         return super().setUp()
 
@@ -42,13 +41,7 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [
-            {
-                "job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30",
-                "max_wait": 25,
-                "result_type": "Status"
-            }
-        ]
+        self.test_json["parameters"] = [{"job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30", "max_wait": 25, "result_type": "Status"}]
 
         mock_get.return_value.status_code = 200
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
@@ -56,15 +49,15 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 1)
-        self.assertEqual(ret_val['status'], 'success')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 1)
+        self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?status_only=1&max_wait=25',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint}?status_only=1&max_wait=25",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
-            headers={'X-API-KEY': silentpush_constant.DUMMY_API_TOKEN}
+            headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
         )
 
     def test_get_job_status_invalid(self, mock_get):
@@ -72,13 +65,7 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [
-            {
-                "job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30",
-                "max_wait": 25,
-                "result_type": "Status"
-            }
-        ]
+        self.test_json["parameters"] = [{"job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30", "max_wait": 25, "result_type": "Status"}]
 
         mock_get.return_value.status_code = 400
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
@@ -86,15 +73,15 @@ class SilentpushAction(unittest.TestCase):
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint}?status_only=1&max_wait=25',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint}?status_only=1&max_wait=25",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
-            headers={'X-API-KEY': silentpush_constant.DUMMY_API_TOKEN}
+            headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
         )
 
     def test_get_job_status_max_wait_type_invalid(self, mock_get):
@@ -102,35 +89,23 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [
-            {
-                "job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30",
-                "max_wait": -10,
-                "result_type": "Status"
-            }
-        ]
+        self.test_json["parameters"] = [{"job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30", "max_wait": -10, "result_type": "Status"}]
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")
 
     def test_get_job_status_result_type_value_invalid(self, mock_get):
         """Test the invalid case for the get job status action.
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [
-            {
-                "job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30",
-                "max_wait": 25,
-                "result_type": "{'ok': True}"
-            }
-        ]
+        self.test_json["parameters"] = [{"job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30", "max_wait": 25, "result_type": "{'ok': True}"}]
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
-        self.assertEqual(ret_val['result_summary']['total_objects'], 1)
-        self.assertEqual(ret_val['result_summary']['total_objects_successful'], 0)
-        self.assertEqual(ret_val['status'], 'failed')
+        self.assertEqual(ret_val["result_summary"]["total_objects"], 1)
+        self.assertEqual(ret_val["result_summary"]["total_objects_successful"], 0)
+        self.assertEqual(ret_val["status"], "failed")

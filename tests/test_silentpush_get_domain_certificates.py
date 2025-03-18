@@ -1,6 +1,6 @@
 # File: test_silentpush_get_domain_certificates.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,7 @@ from silentpush_connector import SilentpushConnector
 
 from . import silentpush_constant, silentpush_responses
 
+
 DOMAIN = "silentpush.com"
 
 
@@ -42,9 +43,7 @@ class SilentpushAction(unittest.TestCase):
                 "identifier": "get_domain_certificates",
             }
         )
-        self.run_job_endpoint = consts.GET_DOMAIN_CERTIFICATES_ENDPOINT.replace(
-            "{{domain}}", "domain"
-        )
+        self.run_job_endpoint = consts.GET_DOMAIN_CERTIFICATES_ENDPOINT.replace("{{domain}}", "domain")
 
         return super().setUp()
 
@@ -71,9 +70,7 @@ class SilentpushAction(unittest.TestCase):
 
         mock_get.return_value.status_code = 200
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_get.return_value.json.return_value = (
-            silentpush_responses.GET_DOMAIN_CERTIFICATES_VALID_RESP
-        )
+        mock_get.return_value.json.return_value = silentpush_responses.GET_DOMAIN_CERTIFICATES_VALID_RESP
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)
@@ -82,9 +79,9 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}'
-            f'{self.run_job_endpoint}?domain_regex=silentpush&cert_issuer=GTS+CA+1P5&date_min=2021-01-01&date_max'
-            f'=2024-01-01&prefer=result&max_wait=25&with_metadata=1&limit=4&skip=1',
+            f"{self.test_json['config']['base_url']}"
+            f"{self.run_job_endpoint}?domain_regex=silentpush&cert_issuer=GTS+CA+1P5&date_min=2021-01-01&date_max"
+            f"=2024-01-01&prefer=result&max_wait=25&with_metadata=1&limit=4&skip=1",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -112,9 +109,7 @@ class SilentpushAction(unittest.TestCase):
 
         mock_get.return_value.status_code = 200
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_get.return_value.json.return_value = (
-            silentpush_responses.GET_DOMAIN_CERTIFICATES_VALID_RESP
-        )
+        mock_get.return_value.json.return_value = silentpush_responses.GET_DOMAIN_CERTIFICATES_VALID_RESP
 
         ret_val = self.connector._handle_action(json.dumps(self.test_json), None)
         ret_val = json.loads(ret_val)

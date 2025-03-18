@@ -1,6 +1,6 @@
 # File: silentpush_responses.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,6 +14,7 @@
 # and limitations under the License.
 
 from . import silentpush_constant
+
 
 LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP = {
     "status_code": 200,
@@ -32,7 +33,7 @@ LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP = {
                 "registrar": silentpush_constant.REGISTRAR,
                 "whois_age": 1541,
                 "whois_created_date": "2020-01-20 08:14:27",
-                "zone": "com"
+                "zone": "com",
             },
             {
                 "age_score": 0,
@@ -45,81 +46,57 @@ LIST_DOMAIN_INFORMATION_DOMAIN_VALID_RESP = {
                 "registrar": "MarkMonitor, Inc.",
                 "whois_age": 9703,
                 "whois_created_date": "1997-09-15 04:00:00",
-                "zone": "com"
-            }
+                "zone": "com",
+            },
         ]
-    }
+    },
 }
 LIST_DOMAIN_INFORMATION_WHOIS_VALID_RESP = {
     "status_code": 200,
     "error": None,
     "response": {
         "whois_live": {
-            "address": [
-                "PO Box 639",
-                "C/O abc.com"
-            ],
+            "address": ["PO Box 639", "C/O abc.com"],
             "city": "Kirkland",
             "country": "US",
             "created": "2020-01-20 09:14:27",
             "date_seen": "2024-04-10 09:38:14",
             "domain": silentpush_constant.ABC_COM,
-            "emails": [
-                "mhjqhltw@whoisprivacyprotect.com",
-                "ABUSE@ENOM.COM"
-            ],
+            "emails": ["mhjqhltw@whoisprivacyprotect.com", "ABUSE@ENOM.COM"],
             "expires": "2025-01-20 09:14:27",
             "name": "Whois Agent (777024973)",
-            "nameservers": [
-                "HENRY.NS.CLOUDFLARE.COM",
-                "VIDA.NS.CLOUDFLARE.COM"
-            ],
+            "nameservers": ["HENRY.NS.CLOUDFLARE.COM", "VIDA.NS.CLOUDFLARE.COM"],
             "org": "Whois Privacy Protection Service, Inc.",
             "raw": {
-                "address": [
-                    "PO Box 639",
-                    "C/O abc.com"
-                ],
+                "address": ["PO Box 639", "C/O abc.com"],
                 "city": "Kirkland",
                 "country": "US",
-                "creation_date": [
-                    "2020-01-20 09:14:27",
-                    "2020-01-20 09:14:00"
-                ],
+                "creation_date": ["2020-01-20 09:14:27", "2020-01-20 09:14:00"],
                 "dnssec": "unsigned",
-                "domain_name": [
-                    "SILENTPUSH.COM",
-                    silentpush_constant.ABC_COM
-                ],
-                "emails": [
-                    "mhjqhltw@whoisprivacyprotect.com",
-                    "ABUSE@ENOM.COM"
-                ],
+                "domain_name": ["SILENTPUSH.COM", silentpush_constant.ABC_COM],
+                "emails": ["mhjqhltw@whoisprivacyprotect.com", "ABUSE@ENOM.COM"],
                 "expiration_date": "2025-01-20 09:14:27",
                 "name": "Whois Agent (777024973)",
-                "name_servers": [
-                    "HENRY.NS.CLOUDFLARE.COM",
-                    "VIDA.NS.CLOUDFLARE.COM"
-                ],
+                "name_servers": ["HENRY.NS.CLOUDFLARE.COM", "VIDA.NS.CLOUDFLARE.COM"],
                 "org": "Whois Privacy Protection Service, Inc.",
                 "referral_url": None,
                 "registrar": silentpush_constant.REGISTRAR,
                 "state": "WA",
                 "status": [
                     "clientTransferProhibited https://icann.org/epp#clientTransferProhibited",
-                    "clientTransferProhibited https://www.icann.org/epp#clientTransferProhibited"
+                    "clientTransferProhibited https://www.icann.org/epp#clientTransferProhibited",
                 ],
                 "updated_date": "2024-01-05 14:22:13",
                 "whois_server": "WHOIS.ENOM.COM",
-                "zipcode": "98083"
+                "zipcode": "98083",
             },
             "registrar": silentpush_constant.REGISTRAR,
             "state": "WA",
             "updated": "2024-01-05 14:22:13",
             "whois_server": "WHOIS.ENOM.COM",
-            "zipcode": "98083"
+            "zipcode": "98083",
         }
-    }
+    },
 }
 
 GET_DOMAIN_CERTIFICATES_VALID_RESP = {
@@ -129,16 +106,10 @@ GET_DOMAIN_CERTIFICATES_VALID_RESP = {
         "domain_certificates": [
             {
                 "cert_index": 1293066932,
-                "chain": [
-                    "R3",
-                    "ISRG Root X1"
-                ],
+                "chain": ["R3", "ISRG Root X1"],
                 "date": 20240401,
                 "domain": silentpush_constant.ABC_COM,
-                "domains": [
-                    "*.app-rainier-temp.playground.scs.splunk.com",
-                    "*.rainier.playground.scs.splunk.com"
-                ],
+                "domains": ["*.app-rainier-temp.playground.scs.splunk.com", "*.rainier.playground.scs.splunk.com"],
                 "fingerprint": "1B:8E:88:CA:EE:30:E5:1C:F8:C7:56:C1:60:EE:CC:F2:01:5B:CF:5A",
                 "fingerprint_md5": "49b367eac206301f76b98f89a892040a",  # pragma: allowlist secret
                 "fingerprint_sha1": "1b8e88caee30e51cf8c756c160eeccf2015bcf5a",  # pragma: allowlist secret
@@ -153,22 +124,16 @@ GET_DOMAIN_CERTIFICATES_VALID_RESP = {
                 "source_name": "Google 'Argon2024' log",
                 "source_url": "https://ct.googleapis.com/logs/us1/argon2024/",
                 "subject": "{'C': None, 'CN': '*.rainier.playground.scs.splunk.com', 'L': None, 'O': None, "
-                           "'OU': None, 'ST': None, 'aggregated': '/CN=*.rainier.playground.scs.splunk.com', "
-                           "'emailAddress': None}",
-                "wildcard": 1
+                "'OU': None, 'ST': None, 'aggregated': '/CN=*.rainier.playground.scs.splunk.com', "
+                "'emailAddress': None}",
+                "wildcard": 1,
             },
             {
                 "cert_index": 48231094,
-                "chain": [
-                    silentpush_constant.CHAIN,
-                    "DigiCert Global Root G2"
-                ],
+                "chain": [silentpush_constant.CHAIN, "DigiCert Global Root G2"],
                 "date": 20240318,
                 "domain": silentpush_constant.ABC_COM,
-                "domains": [
-                    "arewefastyet-stg.sv.splunk.com",
-                    "www.arewefastyet-stg.sv.splunk.com"
-                ],
+                "domains": ["arewefastyet-stg.sv.splunk.com", "www.arewefastyet-stg.sv.splunk.com"],
                 "fingerprint": "C9:52:A5:DF:F3:55:40:96:D0:20:37:CD:BF:A3:FA:D8:D8:65:FA:3B",
                 "fingerprint_md5": "95f9331db89b2b4d90a5eb73645adcde",  # pragma: allowlist secret
                 "fingerprint_sha1": "c952a5dff3554096d02037cdbfa3fad8d865fa3b",  # pragma: allowlist secret
@@ -183,11 +148,11 @@ GET_DOMAIN_CERTIFICATES_VALID_RESP = {
                 "source_name": "Google 'Xenon2025h1' log",
                 "source_url": "https://ct.googleapis.com/logs/eu1/xenon2025h1/",
                 "subject": "{'C': 'US', 'CN': 'arewefastyet-stg.sv.splunk.com', 'L': 'San Francisco', 'O': 'Splunk "
-                           "Inc.', 'OU': None, 'ST': 'California', 'aggregated': "
-                           "'/C=US/CN=arewefastyet-stg.sv.splunk.com/L=San Francisco/O=Splunk Inc./ST=California', "
-                           "'emailAddress': None}",
-                "wildcard": 0
-            }
+                "Inc.', 'OU': None, 'ST': 'California', 'aggregated': "
+                "'/C=US/CN=arewefastyet-stg.sv.splunk.com/L=San Francisco/O=Splunk Inc./ST=California', "
+                "'emailAddress': None}",
+                "wildcard": 0,
+            },
         ],
         "metadata": {
             "job_id": "86d3c7b3-80b1-4eb6-824e-e5ccd407494b",
@@ -195,105 +160,50 @@ GET_DOMAIN_CERTIFICATES_VALID_RESP = {
             "results_returned": 100,
             "results_total_at_least": 1835,
             "timestamp": 1712038502,
-            "with_metadata": 0
-        }
-    }
+            "with_metadata": 0,
+        },
+    },
 }
 DOMAIN_SEARCH_VALID_RESP = {
     "status_code": 200,
     "error": None,
     "response": {
         "records": [
-            {
-                "asn_diversity": 1,
-                "host": "0-------oive.gw.prod.careem-pay.com",
-                "ip_diversity_all": 18,
-                "ip_diversity_groups": 6
-            },
-            {
-                "asn_diversity": 1,
-                "host": "0-------promote.livejournal.com",
-                "ip_diversity_all": 2,
-                "ip_diversity_groups": 1
-            },
-            {
-                "asn_diversity": 1,
-                "host": "0-------qtler.gw.prod.careem-pay.com",
-                "ip_diversity_all": 13,
-                "ip_diversity_groups": 5
-            },
+            {"asn_diversity": 1, "host": "0-------oive.gw.prod.careem-pay.com", "ip_diversity_all": 18, "ip_diversity_groups": 6},
+            {"asn_diversity": 1, "host": "0-------promote.livejournal.com", "ip_diversity_all": 2, "ip_diversity_groups": 1},
+            {"asn_diversity": 1, "host": "0-------qtler.gw.prod.careem-pay.com", "ip_diversity_all": 13, "ip_diversity_groups": 5},
             {
                 "asn_diversity": 1,
                 "host": "0-------zpital-of-philadelphia.gw.prod.careem-pay.com",
                 "ip_diversity_all": 18,
-                "ip_diversity_groups": 6
-            }
+                "ip_diversity_groups": 6,
+            },
         ]
-    }
+    },
 }
 LIST_DOMAIN_INFRATAGS_VALID_RESP = {
     "status_code": 200,
     "error": None,
     "response": {
         "infratags": [
-            {
-                "domain": silentpush_constant.ABC_COM,
-                "mode": "padns",
-                "tag": "abc.com:abc.com:google:markmonitor"
-            },
-            {
-                "domain": silentpush_constant.ABCD_COM,
-                "mode": "padns",
-                "tag": "abc.com:googledomains.com:amazon:keysystemsgmbh"
-            },
-            {
-                "domain": silentpush_constant.ABC_COM,
-                "mode": "padns",
-                "tag": "iphmx.com:markmonitor.zone:amazon:markmonitor"
-            },
-            {
-                "domain": silentpush_constant.ABC_COM,
-                "mode": "padns",
-                "tag": "outlook.com:cloudflare.com:cloudflarenet:enom"
-            }
+            {"domain": silentpush_constant.ABC_COM, "mode": "padns", "tag": "abc.com:abc.com:google:markmonitor"},
+            {"domain": silentpush_constant.ABCD_COM, "mode": "padns", "tag": "abc.com:googledomains.com:amazon:keysystemsgmbh"},
+            {"domain": silentpush_constant.ABC_COM, "mode": "padns", "tag": "iphmx.com:markmonitor.zone:amazon:markmonitor"},
+            {"domain": silentpush_constant.ABC_COM, "mode": "padns", "tag": "outlook.com:cloudflare.com:cloudflarenet:enom"},
         ],
         "tag_clusters": [
             {
                 "25": [
-                    {
-                        "domains": [
-                            silentpush_constant.ABCD_COM,
-                            silentpush_constant.ABC_COM
-                        ],
-                        "match": "abc.com:_:_:_"
-                    },
-                    {
-                        "domains": [
-                            silentpush_constant.ABC_COM,
-                            silentpush_constant.ABC_COM
-                        ],
-                        "match": "_:_:_:markmonitor"
-                    },
-                    {
-                        "domains": [
-                            silentpush_constant.ABC_COM,
-                            silentpush_constant.ABCD_COM
-                        ],
-                        "match": "_:_:amazon:_"
-                    }
+                    {"domains": [silentpush_constant.ABCD_COM, silentpush_constant.ABC_COM], "match": "abc.com:_:_:_"},
+                    {"domains": [silentpush_constant.ABC_COM, silentpush_constant.ABC_COM], "match": "_:_:_:markmonitor"},
+                    {"domains": [silentpush_constant.ABC_COM, silentpush_constant.ABCD_COM], "match": "_:_:amazon:_"},
                 ]
             },
-            {
-                "50": []
-            },
-            {
-                "75": []
-            },
-            {
-                "100": []
-            }
-        ]
-    }
+            {"50": []},
+            {"75": []},
+            {"100": []},
+        ],
+    },
 }
 GET_ENRICHMENT_DATA_VALID_RESP = {
     "status_code": 200,
@@ -303,11 +213,8 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
             "avg_probability": 2.68955,
             "dga_probability_score": 100,
             "domain": silentpush_constant.ABCDE_TK,
-            "domain_string_freq_probabilities": [
-                3.4828,
-                1.8963
-            ],
-            "query": silentpush_constant.ABCDE_TK
+            "domain_string_freq_probabilities": [3.4828, 1.8963],
+            "query": silentpush_constant.ABCDE_TK,
         },
         "domain_urls": {
             "results_summary": {
@@ -318,7 +225,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                 "is_dynamic_domain": False,
                 "is_url_shortener": False,
                 "results": 0,
-                "url_shortener_score": 0
+                "url_shortener_score": 0,
             }
         },
         "domaininfo": {
@@ -333,14 +240,9 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
             "registrar": "",
             "whois_age": "",
             "whois_created_date": "",
-            "zone": "live"
+            "zone": "live",
         },
-        "ip_diversity": {
-            "asn_diversity": "1",
-            "host": silentpush_constant.ABCDE_TK,
-            "ip_diversity_all": "2",
-            "ip_diversity_groups": "1"
-        },
+        "ip_diversity": {"asn_diversity": "1", "host": silentpush_constant.ABCDE_TK, "ip_diversity_all": "2", "ip_diversity_groups": "1"},
         "listing_score": 0,
         "listing_score_explain": {},
         "ns_reputation": {
@@ -355,16 +257,16 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "ns_server": "selah.ns.cloudflare.com",
                     "ns_server_domain_density": 42297,
                     "ns_server_domains_listed": 1,
-                    "ns_server_reputation": 0
+                    "ns_server_reputation": 0,
                 },
                 {
                     "domain": silentpush_constant.ABCDE_TK,
                     "ns_server": "osmar.ns.cloudflare.com",
                     "ns_server_domain_density": 44223,
                     "ns_server_domains_listed": 2,
-                    "ns_server_reputation": 6
-                }
-            ]
+                    "ns_server_reputation": 6,
+                },
+            ],
         },
         "nschanges": {
             "results_summary": {
@@ -402,18 +304,14 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                 "ns_entropy": 0,
                 "ns_entropy_score": 0,
                 "num_changes_all": 0,
-                "query": silentpush_constant.ABCDE_TK
+                "query": silentpush_constant.ABCDE_TK,
             }
         },
         "scan_data": {
             "certificates": [
                 {
                     "domain": "sni.cloudflaressl.com",
-                    "domains": [
-                        "*.abcde.tk",
-                        "sni.cloudflaressl.com",
-                        silentpush_constant.ABCDE_TK
-                    ],
+                    "domains": ["*.abcde.tk", "sni.cloudflaressl.com", silentpush_constant.ABCDE_TK],
                     "fingerprint_sha1": "27f225c21f3b56d85aee10224e82efb0a7748e83",  # pragma: allowlist secret
                     "hostname": silentpush_constant.ABCDE_TK,
                     "ip": silentpush_constant.IPV6_EXAMPLE,
@@ -422,7 +320,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "issuer_organization": "Cloudflare, Inc.",
                     "not_after": "2023-06-22 23:59:59",
                     "not_before": "2022-06-22 00:00:00",
-                    "scan_date": silentpush_constant.DATE_EXAMPLE
+                    "scan_date": silentpush_constant.DATE_EXAMPLE,
                 }
             ],
             "favicon": [
@@ -434,23 +332,22 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "favicon_mmh3": -699551598,
                     "hostname": silentpush_constant.ABCDE_TK,
                     "ip": silentpush_constant.IPV6_EXAMPLE,
-                    "scan_date": silentpush_constant.DATE_EXAMPLE
+                    "scan_date": silentpush_constant.DATE_EXAMPLE,
                 }
             ],
             "headers": [
                 {
                     "headers": {
-                        "cache-control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, "
-                                         "pre-check=0",
+                        "cache-control": "private, max-age=0, no-store, no-cache, must-revalidate, post-check=0, pre-check=0",
                         "content-type": "text/html; charset=UTF-8",
                         "date": "Tue, 06 Dec 2022 21:25:43 GMT",
                         "expires": "Thu, 01 Jan 1970 00:00:01 GMT",
-                        "server": "cloudflare"
+                        "server": "cloudflare",
                     },
                     "hostname": silentpush_constant.ABCDE_TK,
                     "ip": silentpush_constant.IPV6_EXAMPLE,
                     "response": "403 ",
-                    "scan_date": silentpush_constant.DATE_EXAMPLE
+                    "scan_date": silentpush_constant.DATE_EXAMPLE,
                 }
             ],
             "html": [
@@ -460,7 +357,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "html_body_ssdeep": "192:/JYlYuFs8MKtNQTzSkRJohTHXbdVE9KACoeYgaURcK:hW+8MwQn3ncHXbzE9IYcz",
                     "html_title": "Just a moment...",
                     "ip": silentpush_constant.IPV6_EXAMPLE,
-                    "scan_date": silentpush_constant.DATE_EXAMPLE
+                    "scan_date": silentpush_constant.DATE_EXAMPLE,
                 }
             ],
             "jarm": [
@@ -468,14 +365,12 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "hostname": silentpush_constant.ABCDE_TK,
                     "ip": silentpush_constant.IPV6_EXAMPLE,
                     "jarm_hash": "27d3ed3ed0003ed1dc42d43d00041d6183ff1bfae51ebd88d70384363d525c",  # pragma: allowlist secret
-                    "scan_date": silentpush_constant.DATE_EXAMPLE
+                    "scan_date": silentpush_constant.DATE_EXAMPLE,
                 }
-            ]
+            ],
         },
         "sp_risk_score": 6,
-        "sp_risk_score_explain": {
-            "sp_risk_score_decider": "ns_reputation_score"
-        },
+        "sp_risk_score_explain": {"sp_risk_score_decider": "ns_reputation_score"},
         "ip2asn": [
             {
                 "asn": 54113,
@@ -491,15 +386,11 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "ips_in_asn": 530688,
                     "ips_num_listed": 47,
                     "items_num_listed": 3244,
-                    "listings_max_age": 1715
+                    "listings_max_age": 1715,
                 },
                 "asn_takedown_reputation_score": 1,
                 "asname": "FASTLY, US",
-                "benign_info": {
-                    "actor": "",
-                    "known_benign": False,
-                    "tags": []
-                },
+                "benign_info": {"actor": "", "known_benign": False, "tags": []},
                 "date": 20221206,
                 "density": 0,
                 "ip": "167.82.75.63",
@@ -514,7 +405,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                     "continent_name": "North America",
                     "country_code": "US",
                     "country_is_in_european_union": False,
-                    "country_name": "United States"
+                    "country_name": "United States",
                 },
                 "ip_ptr": "",
                 "listing_score": 0,
@@ -535,7 +426,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                                 "purge.fastly.net",
                                 "mirrors.fastly.net",
                                 "control.fastly.net",
-                                "tools.fastly.net"
+                                "tools.fastly.net",
                             ],
                             "fingerprint_sha1": "b56dc72b95590464e37c531fea474b8d6d9eb9b5",  # pragma: allowlist secret
                             "is_expired": "False",
@@ -543,7 +434,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                             "issuer_organization": "GlobalSign nv-sa",
                             "not_after": "2023-01-18 17:21:08",
                             "not_before": "2021-12-17 17:21:08",
-                            "scan_date": silentpush_constant.DATE_EXAMPLE
+                            "scan_date": silentpush_constant.DATE_EXAMPLE,
                         }
                     ],
                     "favicon": [
@@ -553,7 +444,7 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                             "favicon2_path": "",
                             "favicon_md5": "c2822b265b2b66bcde655ce064b1f5ad",  # pragma: allowlist secret
                             "favicon_mmh3": -1590570123,
-                            "scan_date": silentpush_constant.DATE_EXAMPLE
+                            "scan_date": silentpush_constant.DATE_EXAMPLE,
                         }
                     ],
                     "headers": [
@@ -563,10 +454,10 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                                 "content-length": "245",
                                 "content-type": "text/html",
                                 "date": "Tue, 06 Dec 2022 21:38:05 GMT",
-                                "server": "Varnish"
+                                "server": "Varnish",
                             },
                             "response": "500 ",
-                            "scan_date": silentpush_constant.DATE_EXAMPLE
+                            "scan_date": silentpush_constant.DATE_EXAMPLE,
                         }
                     ],
                     "html": [
@@ -574,33 +465,28 @@ GET_ENRICHMENT_DATA_VALID_RESP = {
                             "html_body_murmur3": "-603480098",
                             "html_body_ssdeep": "6:qFzLME+noiLEdxb4/nXwDRwLZckFDWWEobuVCImhe:Xok4xbKgSZckRVpQ",
                             "html_title": "Fastly error: unknown domain 167.82.75.63",
-                            "scan_date": silentpush_constant.DATE_EXAMPLE
+                            "scan_date": silentpush_constant.DATE_EXAMPLE,
                         }
                     ],
                     "jarm": [
                         {
                             "jarm_hash": "29d29d00029d29d00042d43d00041d2aa5ce6a70de7ba95aef77a77b00a0af",  # pragma: allowlist secret
-                            "scan_date": silentpush_constant.DATE_EXAMPLE
+                            "scan_date": silentpush_constant.DATE_EXAMPLE,
                         }
-                    ]
+                    ],
                 },
-                "sinkhole_info": {
-                    "known_sinkhole_ip": False,
-                    "tags": []
-                },
+                "sinkhole_info": {"known_sinkhole_ip": False, "tags": []},
                 "sp_risk_score": 1,
-                "sp_risk_score_explain": {
-                    "sp_risk_score_decider": "asn_takedown_reputation"
-                },
+                "sp_risk_score_explain": {"sp_risk_score_decider": "asn_takedown_reputation"},
                 "subnet": "167.82.0.0/17",
                 "subnet_allocation_age": 1246,
                 "subnet_allocation_date": 20190709,
                 "subnet_reputation": 0,
                 "subnet_reputation_explain": {},
-                "subnet_reputation_score": 0
+                "subnet_reputation_score": 0,
             }
-        ]
-    }
+        ],
+    },
 }
 LIST_IP_INFORMATION_VALID_RESP = {
     "status_code": 200,
@@ -618,11 +504,7 @@ LIST_IP_INFORMATION_VALID_RESP = {
                 "asn_takedown_reputation": 0,
                 "asn_takedown_reputation_score": 0,
                 "asname": "CLOUDFLARENET, US",
-                "benign_info": {
-                    "actor": "",
-                    "known_benign": False,
-                    "tags": []
-                },
+                "benign_info": {"actor": "", "known_benign": False, "tags": []},
                 "date": 20210710,
                 "density": 37852,
                 "ip": "1.1.1.1",
@@ -634,20 +516,17 @@ LIST_IP_INFORMATION_VALID_RESP = {
                     "continent_name": "Oceania",
                     "country_code": "AU",
                     "country_is_in_european_union": False,
-                    "country_name": "Australia"
+                    "country_name": "Australia",
                 },
                 "ip_ptr": "one.one.one.one",
                 "malscore": 0,
-                "sinkhole_info": {
-                    "known_sinkhole_ip": False,
-                    "tags": []
-                },
+                "sinkhole_info": {"known_sinkhole_ip": False, "tags": []},
                 "subnet": "1.1.1.0/24",
                 "subnet_allocation_age": 3621,
                 "subnet_allocation_date": 20110811,
                 "subnet_reputation": 0,
                 "subnet_reputation_score": 0,
-                "sp_risk_score": 100
+                "sp_risk_score": 100,
             },
             {
                 "asn": 19281,
@@ -660,11 +539,7 @@ LIST_IP_INFORMATION_VALID_RESP = {
                 "asn_takedown_reputation": 0,
                 "asn_takedown_reputation_score": 0,
                 "asname": "QUAD9-AS-1, US",
-                "benign_info": {
-                    "actor": "",
-                    "known_benign": False,
-                    "tags": []
-                },
+                "benign_info": {"actor": "", "known_benign": False, "tags": []},
                 "date": 20210710,
                 "density": 161,
                 "ip": "9.9.9.9",
@@ -676,23 +551,20 @@ LIST_IP_INFORMATION_VALID_RESP = {
                     "continent_name": "North America",
                     "country_code": "US",
                     "country_is_in_european_union": False,
-                    "country_name": "United States"
+                    "country_name": "United States",
                 },
                 "ip_ptr": "dns9.quad9.net",
                 "malscore": 0,
-                "sinkhole_info": {
-                    "known_sinkhole_ip": False,
-                    "tags": []
-                },
+                "sinkhole_info": {"known_sinkhole_ip": False, "tags": []},
                 "subnet": "9.9.9.0/24",
                 "subnet_allocation_age": 1396,
                 "subnet_allocation_date": 20170913,
                 "subnet_reputation": 0,
                 "subnet_reputation_score": 0,
-                "sp_risk_score": 100
-            }
+                "sp_risk_score": 100,
+            },
         ]
-    }
+    },
 }
 GET_ASN_REPUTATION_VALID_RESP = {
     "status_code": 200,
@@ -702,49 +574,33 @@ GET_ASN_REPUTATION_VALID_RESP = {
             {
                 "asn": 14618,
                 "asn_reputation": 34,
-                "asn_reputation_explain": {
-                    "ips_in_asn": 17160960,
-                    "ips_num_active": 13901839,
-                    "ips_num_listed": 295
-                },
+                "asn_reputation_explain": {"ips_in_asn": 17160960, "ips_num_active": 13901839, "ips_num_listed": 295},
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240326
+                "date": 20240326,
             },
             {
                 "asn": 14618,
                 "asn_reputation": 36,
-                "asn_reputation_explain": {
-                    "ips_in_asn": 17160960,
-                    "ips_num_active": 5691860,
-                    "ips_num_listed": 293
-                },
+                "asn_reputation_explain": {"ips_in_asn": 17160960, "ips_num_active": 5691860, "ips_num_listed": 293},
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240325
+                "date": 20240325,
             },
             {
                 "asn": 14618,
                 "asn_reputation": 34,
-                "asn_reputation_explain": {
-                    "ips_in_asn": 17160960,
-                    "ips_num_active": 13900703,
-                    "ips_num_listed": 291
-                },
+                "asn_reputation_explain": {"ips_in_asn": 17160960, "ips_num_active": 13900703, "ips_num_listed": 291},
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240324
+                "date": 20240324,
             },
             {
                 "asn": 14618,
                 "asn_reputation": 34,
-                "asn_reputation_explain": {
-                    "ips_in_asn": 17160704,
-                    "ips_num_active": 13900614,
-                    "ips_num_listed": 296
-                },
+                "asn_reputation_explain": {"ips_in_asn": 17160704, "ips_num_active": 13900614, "ips_num_listed": 296},
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240323
-            }
+                "date": 20240323,
+            },
         ]
-    }
+    },
 }
 GET_ASN_TAKEDOWN_REPUTATION_VALID_RESP = {
     "status_code": 200,
@@ -761,10 +617,10 @@ GET_ASN_TAKEDOWN_REPUTATION_VALID_RESP = {
                     "items_num_listed": 5,
                     "lifetime_avg": 5,
                     "lifetime_max": 5,
-                    "lifetime_total": 23
+                    "lifetime_total": 23,
                 },
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240326
+                "date": 20240326,
             },
             {
                 "asn": 14618,
@@ -776,10 +632,10 @@ GET_ASN_TAKEDOWN_REPUTATION_VALID_RESP = {
                     "items_num_listed": 1,
                     "lifetime_avg": 3,
                     "lifetime_max": 3,
-                    "lifetime_total": 3
+                    "lifetime_total": 3,
                 },
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240325
+                "date": 20240325,
             },
             {
                 "asn": 14618,
@@ -791,58 +647,29 @@ GET_ASN_TAKEDOWN_REPUTATION_VALID_RESP = {
                     "items_num_listed": 366,
                     "lifetime_avg": 155,
                     "lifetime_max": 1093,
-                    "lifetime_total": 56548
+                    "lifetime_total": 56548,
                 },
                 "asname": silentpush_constant.AS_NAME,
-                "date": 20240324
-            }
+                "date": 20240324,
+            },
         ]
-    }
+    },
 }
 GET_IPV4_REPUTATION_VALID_RESP = {
     "status_code": 200,
     "error": None,
     "response": {
         "ip_reputation_history": [
-            {
-                "date": 20240327,
-                "ip": "8.8.8.8",
-                "ip_reputation": 26,
-                "ip_reputation_explain": {
-                    "ip_density": 140767,
-                    "names_num_listed": 24
-                }
-            },
-            {
-                "date": 20240326,
-                "ip": "8.8.8.8",
-                "ip_reputation": 26,
-                "ip_reputation_explain": {
-                    "ip_density": 140739,
-                    "names_num_listed": 24
-                }
-            },
-            {
-                "date": 20240325,
-                "ip": "8.8.8.8",
-                "ip_reputation": 26,
-                "ip_reputation_explain": {
-                    "ip_density": 140720,
-                    "names_num_listed": 24
-                }
-            }
+            {"date": 20240327, "ip": "8.8.8.8", "ip_reputation": 26, "ip_reputation_explain": {"ip_density": 140767, "names_num_listed": 24}},
+            {"date": 20240326, "ip": "8.8.8.8", "ip_reputation": 26, "ip_reputation_explain": {"ip_density": 140739, "names_num_listed": 24}},
+            {"date": 20240325, "ip": "8.8.8.8", "ip_reputation": 26, "ip_reputation_explain": {"ip_density": 140720, "names_num_listed": 24}},
         ]
-    }
+    },
 }
 GET_JOB_STATUS_VALID_RESP = {
     "status_code": 200,
     "error": None,
-    "response": {
-        "job_status": {
-            "job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30",
-            "status": "PENDING"
-        }
-    }
+    "response": {"job_status": {"job_id": "6bd0ba36-9f30-4beb-8a7a-164123ecdc30", "status": "PENDING"}},
 }
 GET_NAMESERVER_REPUTATION_VALID_RESP = {
     "status_code": 200,
@@ -853,252 +680,102 @@ GET_NAMESERVER_REPUTATION_VALID_RESP = {
                 "date": 20240409,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240408,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240407,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240406,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240405,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240404,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240403,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 0,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 1
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 1},
             },
             {
                 "date": 20240401,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 63,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 2
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 2},
             },
             {
                 "date": 20240331,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 63,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 2
-                }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 2},
             },
             {
                 "date": 20240330,
                 "ns_server": silentpush_constant.NS_SERVER,
                 "ns_server_reputation": 63,
-                "ns_server_reputation_explain": {
-                    "ns_server_domain_density": 3,
-                    "ns_server_domains_listed": 2
-                }
-            }
+                "ns_server_reputation_explain": {"ns_server_domain_density": 3, "ns_server_domains_listed": 2},
+            },
         ]
-    }
+    },
 }
 GET_SUBNET_REPUTATION_VALID_RESP = {
     "status_code": 200,
     "error": None,
     "response": {
         "subnet_reputation_history": [
-            {
-                "date": 20240409,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 12
-            },
-            {
-                "date": 20240408,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240407,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 16
-            },
-            {
-                "date": 20240406,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240405,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 17
-            },
-            {
-                "date": 20240404,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 17
-            },
-            {
-                "date": 20240403,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240402,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 11
-            },
-            {
-                "date": 20240401,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 8
-            },
-            {
-                "date": 20240331,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 12
-            },
-            {
-                "date": 20240330,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240329,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 18
-            },
-            {
-                "date": 20240328,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240327,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 16
-            },
-            {
-                "date": 20240326,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240325,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240324,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240323,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 17
-            },
-            {
-                "date": 20240322,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240321,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240320,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240319,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 14
-            },
-            {
-                "date": 20240318,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 15
-            },
-            {
-                "date": 20240317,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 16
-            },
-            {
-                "date": 20240316,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 17
-            },
-            {
-                "date": 20240315,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240314,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 20
-            },
-            {
-                "date": 20240313,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 21
-            },
-            {
-                "date": 20240312,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 19
-            },
-            {
-                "date": 20240311,
-                "subnet": silentpush_constant.SUBNET,
-                "subnet_reputation": 20
-            }
+            {"date": 20240409, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 12},
+            {"date": 20240408, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240407, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 16},
+            {"date": 20240406, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240405, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 17},
+            {"date": 20240404, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 17},
+            {"date": 20240403, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240402, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 11},
+            {"date": 20240401, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 8},
+            {"date": 20240331, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 12},
+            {"date": 20240330, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240329, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 18},
+            {"date": 20240328, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240327, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 16},
+            {"date": 20240326, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240325, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240324, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240323, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 17},
+            {"date": 20240322, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240321, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240320, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240319, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 14},
+            {"date": 20240318, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 15},
+            {"date": 20240317, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 16},
+            {"date": 20240316, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 17},
+            {"date": 20240315, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240314, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 20},
+            {"date": 20240313, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 21},
+            {"date": 20240312, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 19},
+            {"date": 20240311, "subnet": silentpush_constant.SUBNET, "subnet_reputation": 20},
         ]
-    }
+    },
 }
 GET_ASNS_SEEN_FOR_DOMAIN_VALID_RESP = {
     "status_code": 200,
@@ -1111,10 +788,10 @@ GET_ASNS_SEEN_FOR_DOMAIN_VALID_RESP = {
                 "asn": 15129,
                 "asn_size": 15084544,
                 "asname": "ABC",
-                "domain_hosts_in_asn": 26647
+                "domain_hosts_in_asn": 26647,
             }
         ]
-    }
+    },
 }
 FORWARD_PADNS_LOOKUP_VALID_RESP = {
     "status_code": 200,
@@ -1129,7 +806,7 @@ FORWARD_PADNS_LOOKUP_VALID_RESP = {
                 "nshash": "850c47a684c9ea9c32ece18e7be4cddc",  # pragma: allowlist secret
                 "query": silentpush_constant.ABC_COM,
                 "ttl": 172800,
-                "type": "NS"
+                "type": "NS",
             },
             {
                 "answer": silentpush_constant.FORWARD_LOOKUP_ANSWER,
@@ -1144,10 +821,10 @@ FORWARD_PADNS_LOOKUP_VALID_RESP = {
                 "rrname": silentpush_constant.ABC_COM,
                 "rrtype": "NS",
                 "time_first": 1608836683,
-                "time_last": 1712690733
-            }
+                "time_last": 1712690733,
+            },
         ]
-    }
+    },
 }
 REVERSE_PADNS_LOOKUP_VALID_RESP = {
     "status_code": 200,
@@ -1162,7 +839,7 @@ REVERSE_PADNS_LOOKUP_VALID_RESP = {
                 "nshash": "850c47a684c9ea9c32ece18e7be4cddc",  # pragma: allowlist secret
                 "query": silentpush_constant.ABC_COM,
                 "ttl": 172800,
-                "type": "NS"
+                "type": "NS",
             },
             {
                 "answer": silentpush_constant.FORWARD_LOOKUP_ANSWER,
@@ -1177,10 +854,10 @@ REVERSE_PADNS_LOOKUP_VALID_RESP = {
                 "rrname": silentpush_constant.ABC_COM,
                 "rrtype": "NS",
                 "time_first": 1608836683,
-                "time_last": 1712690733
-            }
+                "time_last": 1712690733,
+            },
         ]
-    }
+    },
 }
 DENSITY_LOOKUP_VALID_RESP = {
     "status_code": 200,
@@ -1197,10 +874,10 @@ DENSITY_LOOKUP_VALID_RESP = {
                 "density_stddev": 12167.599609375,
                 "ips_active": 192,
                 "subnet": "1.1.1.0/24",
-                "subnet_size": 256
+                "subnet_size": 256,
             }
         ]
-    }
+    },
 }
 LIVE_URL_SCAN_VALID_RESP = {
     "status_code": 200,
@@ -1208,24 +885,18 @@ LIVE_URL_SCAN_VALID_RESP = {
     "response": {
         "scan": {
             "HHV": "e93d824aba96328b636838eb1c",  # pragma: allowlist secret
-            "adtech": {
-                "ads_txt": False,
-                "app_ads_txt": False,
-                "sellers_json": False
-            },
+            "adtech": {"ads_txt": False, "app_ads_txt": False, "sellers_json": False},
             "body_analysis": {
                 "SHV": "1ffa31c7fea499cb5860148e16",  # pragma: allowlist secret
                 "adsense": [],
                 "body_sha256": "8df36af6de0352ba2fd888a041bca6aa099dc986bf0a495d0b394ccef5303f34",  # pragma: allowlist secret
                 "google-GA4": [],
-                "google-UA": [
-                    "UA-399680-1"
-                ],
+                "google-UA": ["UA-399680-1"],
                 "google-adstag": [],
                 "js_sha256": [
-                    "!function(e){var n=\" 503fe68314eb7a783c45249d1665c4e5cb63c5d6d0c73678dd6295e1a84364f5",
-                    "!function(e,t){\"obje c24f8f88e38a550d4c75489b627bd0c99e391af61a194400366205665a5a13b9",
-                    "var siteConfig= {\"lo d5c24feb9764817d7c62e9814d3805565c10a44e9ce0412d20b9aee804a29e2e",
+                    '!function(e){var n=" 503fe68314eb7a783c45249d1665c4e5cb63c5d6d0c73678dd6295e1a84364f5',
+                    '!function(e,t){"obje c24f8f88e38a550d4c75489b627bd0c99e391af61a194400366205665a5a13b9',
+                    'var siteConfig= {"lo d5c24feb9764817d7c62e9814d3805565c10a44e9ce0412d20b9aee804a29e2e',
                     "(function(i,s,o,g,r, fc05e690fa1aeb6ddea214766aea8ee18c210049219400582b012bd87df0823e",
                     "https://www.splunk.com//etc.clientlibs/splunk/core/clientlibs/clientlib-jquery"
                     ".9283f4431df92f66f6d0e4cb812e6d1a.js "
@@ -1283,15 +954,14 @@ LIVE_URL_SCAN_VALID_RESP = {
                     ".8bd613922c8f61d6eb3f689208b118df.js "
                     "4bc57159cbd3706ff256692136234b4990e9d0758f0a5a02858242367f171ac6",  # pragma: allowlist secret
                     "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js "
-                    "92e4588c227a58321a728574129e52ec244df30b90fc9a64a30ee65410104c41"  # pragma: allowlist secret
+                    "92e4588c227a58321a728574129e52ec244df30b90fc9a64a30ee65410104c41",  # pragma: allowlist secret
                 ],
                 "js_ssdeep": [
-                    "!function(e,t){\"obje 48:1lhSu12EpWVo6Zm+oA+CIaSjh3Y/0UiQHjDHIEmZ:HhiiF7vwXYZ",
+                    '!function(e,t){"obje 48:1lhSu12EpWVo6Zm+oA+CIaSjh3Y/0UiQHjDHIEmZ:HhiiF7vwXYZ',
                     "(function(i,s,o,g,r, 12:9Lo73Xy3dYIRWlob6vIwvM7mmHEaCER6b:po73XyNYIRWlobgIQmm2EW6b",
-                    "var siteConfig= {\"lo 12:EqJmr4KLXIPpup6S1zsE6Sk5ijEgy9J6XfCyusVQGluU5hzOP1/pn/MC/m3/Db:LC"
+                    'var siteConfig= {"lo 12:EqJmr4KLXIPpup6S1zsE6Sk5ijEgy9J6XfCyusVQGluU5hzOP1/pn/MC/m3/Db:LC'
                     "+2FzL67iYgcECbsVuUz6P1/pn/3/Uv",  # pragma: allowlist secret
-                    "!function(e){var n=\" 48:TShMqSVZGPB4JlJMYwFiC0nVHYVnc7eWTYXwNZZq6/viUUAgIB21EqYrsr6eoam4"
-                    ":OwMRiC0npYxUYgLZqSU/EqKaPLA4CIuy",
+                    '!function(e){var n=" 48:TShMqSVZGPB4JlJMYwFiC0nVHYVnc7eWTYXwNZZq6/viUUAgIB21EqYrsr6eoam4:OwMRiC0npYxUYgLZqSU/EqKaPLA4CIuy',
                     "https://www.splunk.com//etc.clientlibs/splunk/core/clientlibs/clientlib-jquery"
                     ".9283f4431df92f66f6d0e4cb812e6d1a.js "
                     "3072:zbPxwcv91BspLL8+SmBQ47GKSO3jgD18bg5GmLeaYUs9sqXTW:zbPGK91W58EBQ47GKwFpqa",
@@ -1351,12 +1021,10 @@ LIVE_URL_SCAN_VALID_RESP = {
                     ".8bd613922c8f61d6eb3f689208b118df.js "
                     "3072:oQuYyjdB4OurrMcSs0XDBjlc02yB26mn1dSHq79kQCKPWRiZLcPKR7wPKGbPV:3Ss0XDBjlc02yB268ULiZLcPK6",
                     "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js "
-                    "384:TRFZ2wWtdbD5ABwXwLrekrff8eTr+xITxMcpn9LuJPvV/:T8wAD5ABwXw+krfflyxUxxn96/"
+                    "384:TRFZ2wWtdbD5ABwXwLrekrff8eTr+xITxMcpn9LuJPvV/:T8wAD5ABwXw+krfflyxUxxn96/",
                 ],
-                "language": [
-                    "English"
-                ],
-                "onion": []
+                "language": ["English"],
+                "onion": [],
             },
             "datahash": "f9fd1bfbb3d791e08267b105823274253d0d89f7b0302536cbd75b9b469e3ab9",  # pragma: allowlist secret
             "domain": silentpush_constant.ABC_COM,
@@ -1374,7 +1042,7 @@ LIVE_URL_SCAN_VALID_RESP = {
                 "/content/dam/splunk2/images/icons/favicons/favicon-196x196.png",
                 "/content/dam/splunk2/images/icons/favicons/favicon-32x32.png",
                 "/content/dam/splunk2/images/icons/favicons/favicon-96x96.png",
-                "/content/dam/splunk2/images/icons/favicons/favicon.ico"
+                "/content/dam/splunk2/images/icons/favicons/favicon.ico",
             ],
             "file": False,
             "file_sha256": "",
@@ -1384,7 +1052,7 @@ LIVE_URL_SCAN_VALID_RESP = {
                 "content-encoding": "gzip",
                 "content-type": "text/html; charset=UTF-8",
                 "expires": "Wed, 10 Apr 2024 06:47:01 GMT",
-                "server": "Apache"
+                "server": "Apache",
             },
             "hostname": silentpush_constant.ABCD_COM,
             "html_body_length": 472714,
@@ -1401,44 +1069,28 @@ LIVE_URL_SCAN_VALID_RESP = {
             "origin_ip": "23.212.249.211",
             "origin_path": "",
             "origin_port": 80,
-            "origin_resolves_to": [
-                "23.212.249.211",
-                "23.212.249.219"
-            ],
+            "origin_resolves_to": ["23.212.249.211", "23.212.249.219"],
             "origin_scheme": "http",
             "origin_url": "http://www.splunk.com",
             "path": "/",
             "port": 443,
             "redirect": True,
             "redirect_count": 1,
-            "redirect_list": [
-                "https://www.splunk.com/"
-            ],
+            "redirect_list": ["https://www.splunk.com/"],
             "redirect_to_https": True,
-            "resolves_to": [
-                "23.212.249.211",
-                "23.212.249.219"
-            ],
+            "resolves_to": ["23.212.249.211", "23.212.249.219"],
             "response": 200,
             "scheme": "https",
             "ssl": {
                 "CHV": "7ef117b4ce58f51d63e20c1422bb549269494c3:x:0002",
                 "SHA1": "22:49:E0:DB:EA:84:C0:40:DC:5E:85:9F:17:28:9B:86:6B:19:EF:1B",
-                "SHA256": "A2:CF:B2:45:79:4F:AE:FF:81:33:5B:56:71:D2:F0:17:FE:43:58:31:19:6D:4B:8D:98:C8:3A:F8:FF:15"
-                          ":04:08",
+                "SHA256": "A2:CF:B2:45:79:4F:AE:FF:81:33:5B:56:71:D2:F0:17:FE:43:58:31:19:6D:4B:8D:98:C8:3A:F8:FF:15:04:08",
                 "authority_key_id": "74:85:80:C0:66:C7:DF:37:DE:CF:BD:29:37:AA:03:1D:BE:ED:CD:17",
                 "expired": False,
-                "issuer": {
-                    "common_name": silentpush_constant.CHAIN,
-                    "country": "US",
-                    "organization": "DigiCert Inc"
-                },
+                "issuer": {"common_name": silentpush_constant.CHAIN, "country": "US", "organization": "DigiCert Inc"},
                 "not_after": "2025-03-24T23:59:59Z",
                 "not_before": "2024-03-25T00:00:00Z",
-                "sans": [
-                    silentpush_constant.ABCD_COM,
-                    silentpush_constant.ABC_COM
-                ],
+                "sans": [silentpush_constant.ABCD_COM, silentpush_constant.ABC_COM],
                 "sans_count": 2,
                 "serial_number": "11707413500601092170381024630621700960",
                 "sigalg": "sha256WithRSAEncryption",
@@ -1447,17 +1099,17 @@ LIVE_URL_SCAN_VALID_RESP = {
                     "country": "US",
                     "locality": "San Francisco",
                     "organization": "Splunk Inc.",
-                    "state": "California"
+                    "state": "California",
                 },
                 "subject_key_id": "25:D5:BF:3B:7A:3B:CB:00:5A:36:8B:13:58:E0:86:CC:20:21:73:5A",
-                "wildcard": False
+                "wildcard": False,
             },
             "subdomain": "www",
             "tld": "com",
             "url": "https://www.splunk.com/",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109) Gecko/20100101 Firefox/112.0"
+            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109) Gecko/20100101 Firefox/112.0",
         }
-    }
+    },
 }
 SEARCH_SCAN_DATA_VALID_RESP = {
     "status_code": 200,
@@ -1466,18 +1118,12 @@ SEARCH_SCAN_DATA_VALID_RESP = {
         "scandata_raw": [
             {
                 "HHV": "ef1c3b01903730bb3ea3502c1d",  # pragma: allowlist secret
-                "adtech": {
-                    "ads_txt": False,
-                    "app_ads_txt": False,
-                    "sellers_json": False
-                },
+                "adtech": {"ads_txt": False, "app_ads_txt": False, "sellers_json": False},
                 "body_analysis": {
                     "SHV": "9ac3fb2c596644f196b75d6a79",  # pragma: allowlist secret
                     "adsense": [],
                     "body_sha256": "d588d8edded43d03fa2bef2dcf315f889dd5c9fce070c8b9691db32796a28f47",  # pragma: allowlist secret
-                    "google-GA4": [
-                        "G-5G0ZMXH8S2"
-                    ],
+                    "google-GA4": ["G-5G0ZMXH8S2"],
                     "google-UA": [],
                     "google-adstag": [],
                     "js_sha256": [
@@ -1488,7 +1134,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             6a318d7a41859dae3dfd075791dcf565e12a23a6fbd9a10ac44288b2138b77aa",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b\
-                            ---66047ac9cbafd.js 82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880"
+                            ---66047ac9cbafd.js 82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880",
                     ],
                     "js_ssdeep": [
                         "'use strict';var avi 12:EqJmXV621ERBZMURaGUSZWmRsmRV/7n67mRV/IORmRV/2Vb:L+CRjDRlUvmRsmRVznKmRV/mRV+Vb",
@@ -1499,12 +1145,10 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             48:4QqugYkpwADOWAYWPjkpwuDunpcdWwmpUudkpwdI:dRaeNp4eSKcdRIj+e+",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b---66047ac9cbafd.js\
-                            192:W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S"
+                            192:W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S",
                     ],
-                    "language": [
-                        "English"
-                    ],
-                    "onion": []
+                    "language": ["English"],
+                    "onion": [],
                 },
                 "datahash": "c617e84d81dd68f60b6aa75860702f82087c270a3571854ecf70f7cf838b2ec6",  # pragma: allowlist secret
                 "datasource": "webscan",
@@ -1514,23 +1158,17 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "favicon2_murmur3": -2032288512,
                 "favicon2_path": "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg",
                 "favicon_md5": "",
-                "favicon_urls": [
-                    "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"
-                ],
+                "favicon_urls": ["https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"],
                 "file": False,
                 "file_sha256": "",
-                "geoip": {
-                    "as_org": "CLOUDFLARENET",
-                    "asn": 13335,
-                    "ip": "104.26.10.149"
-                },
+                "geoip": {"as_org": "CLOUDFLARENET", "asn": 13335, "ip": "104.26.10.149"},
                 "header": {
                     "cache-control": "max-age=600, must-revalidate",
                     "connection": "keep-alive",
                     "content-encoding": "gzip",
                     "content-type": "text/html; charset=UTF-8",
                     "server": "cloudflare",
-                    "x-powered-by": "WP Engine"
+                    "x-powered-by": "WP Engine",
                 },
                 "hostname": "www.silentpush.com",
                 "html_body_length": 110892,
@@ -1553,7 +1191,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "2606:4700:20::681a:b95",
                     "104.26.11.149",
                     "2606:4700:20::ac43:460d",
-                    "172.67.70.13"
+                    "172.67.70.13",
                 ],
                 "origin_scheme": "http",
                 "origin_url": "http://www.silentpush.com",
@@ -1561,9 +1199,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "port": 443,
                 "redirect": True,
                 "redirect_count": 1,
-                "redirect_list": [
-                    "https://www.silentpush.com/"
-                ],
+                "redirect_list": ["https://www.silentpush.com/"],
                 "redirect_to_https": True,
                 "resolves_to": [
                     "104.26.10.149",
@@ -1571,7 +1207,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "2606:4700:20::681a:b95",
                     "104.26.11.149",
                     "2606:4700:20::ac43:460d",
-                    "172.67.70.13"
+                    "172.67.70.13",
                 ],
                 "response": 200,
                 "scan_date": "2024-04-19 06:58:45",
@@ -1582,37 +1218,25 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "SHA256": "4B:7B:E2:3F:61:E5:3A:E8:09:26:72:84:64:0C:CF:BA:25:99:76:B2:73:C6:C0:46:C2:89:61:98:8E:75:DF:21",
                     "authority_key_id": "5A:F3:ED:2B:FC:36:C2:37:79:B9:52:30:EA:54:6F:CF:55:CB:2E:AC",
                     "expired": False,
-                    "issuer": {
-                        "common_name": "E1",
-                        "country": "US",
-                        "organization": "Let's Encrypt"
-                    },
+                    "issuer": {"common_name": "E1", "country": "US", "organization": "Let's Encrypt"},
                     "not_after": "2024-07-14T18:38:24Z",
                     "not_before": "2024-04-15T18:38:25Z",
-                    "sans": [
-                        "www.silentpush.com"
-                    ],
+                    "sans": ["www.silentpush.com"],
                     "sans_count": 1,
                     "serial_number": "433625883763564008410694711475305342226691",
                     "sigalg": "ecdsa-with-SHA384",
-                    "subject": {
-                        "common_name": "www.silentpush.com"
-                    },
+                    "subject": {"common_name": "www.silentpush.com"},
                     "subject_key_id": "AE:8D:F1:0A:D6:4B:24:47:EA:1E:22:B3:E1:EB:BE:ED:06:3F:45:3A",
-                    "wildcard": False
+                    "wildcard": False,
                 },
                 "subdomain": "www",
                 "tld": "com",
                 "url": "https://www.silentpush.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109) Gecko/20100101 Firefox/112.0"
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109) Gecko/20100101 Firefox/112.0",
             },
             {
                 "HHV": "1c157123cbaacce690128f3bc9",  # pragma: allowlist secret
-                "adtech": {
-                    "ads_txt": False,
-                    "app_ads_txt": False,
-                    "sellers_json": False
-                },
+                "adtech": {"ads_txt": False, "app_ads_txt": False, "sellers_json": False},
                 "body_analysis": {
                     "SHV": "f44dc6dc782974928e38501002",  # pragma: allowlist secret
                     "adsense": [],
@@ -1622,10 +1246,8 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "google-adstag": [],
                     "js_sha256": [],
                     "js_ssdeep": [],
-                    "language": [
-                        "English"
-                    ],
-                    "onion": []
+                    "language": ["English"],
+                    "onion": [],
                 },
                 "datahash": "39d5bef59aafab21ab630a957c1bac971e3d6b2e846f82772256b43b449ecb32",  # pragma: allowlist secret
                 "datasource": "webscan",
@@ -1635,9 +1257,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "favicon_md5": "dcce8de1630993302199ccdbe227a596",  # pragma: allowlist secret
                 "favicon_murmur3": 1723200862,
                 "favicon_path": "http://app.silentpush.com/assets/favicon-Cz6ViH17.ico",
-                "favicon_urls": [
-                    "/assets/favicon-Cz6ViH17.ico"
-                ],
+                "favicon_urls": ["/assets/favicon-Cz6ViH17.ico"],
                 "file": False,
                 "file_sha256": "",
                 "geoip": {
@@ -1649,19 +1269,16 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "country_name": "Germany",
                     "ip": "176.9.15.233",
                     "latitude": 51.2993,
-                    "location": {
-                        "lat": 51.2993,
-                        "lon": 9.491
-                    },
+                    "location": {"lat": 51.2993, "lon": 9.491},
                     "longitude": 9.491,
-                    "timezone": "Europe/Berlin"
+                    "timezone": "Europe/Berlin",
                 },
                 "header": {
                     "cache-control": "no-cache",
                     "content-encoding": "gzip",
                     "content-type": "text/html",
-                    "etag": "W/\"661f696c-3d9\"",
-                    "server": "nginx"
+                    "etag": 'W/"661f696c-3d9"',
+                    "server": "nginx",
                 },
                 "hostname": "app.silentpush.com",
                 "html_body_length": 985,
@@ -1678,22 +1295,16 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "origin_ip": "176.9.15.233",
                 "origin_path": "",
                 "origin_port": 80,
-                "origin_resolves_to": [
-                    "176.9.15.233"
-                ],
+                "origin_resolves_to": ["176.9.15.233"],
                 "origin_scheme": "http",
                 "origin_url": "http://app.silentpush.com",
                 "path": "",
                 "port": 443,
                 "redirect": True,
                 "redirect_count": 1,
-                "redirect_list": [
-                    "https://app.silentpush.com/"
-                ],
+                "redirect_list": ["https://app.silentpush.com/"],
                 "redirect_to_https": True,
-                "resolves_to": [
-                    "176.9.15.233"
-                ],
+                "resolves_to": ["176.9.15.233"],
                 "response": 200,
                 "scan_date": "2024-04-18 13:59:28",
                 "scheme": "https",
@@ -1707,42 +1318,31 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "common_name": "Thawte TLS RSA CA G1",
                         "country": "US",
                         "organization": "DigiCert Inc",
-                        "organizational_unit": "www.digicert.com"
+                        "organizational_unit": "www.digicert.com",
                     },
                     "not_after": "2025-02-20T23:59:59Z",
                     "not_before": "2024-02-20T00:00:00Z",
-                    "sans": [
-                        "*.silentpush.com",
-                        "silentpush.com"
-                    ],
+                    "sans": ["*.silentpush.com", "silentpush.com"],
                     "sans_count": 2,
                     "serial_number": "9577327575028681525497757162122991602",
                     "sigalg": "sha256WithRSAEncryption",
-                    "subject": {
-                        "common_name": "*.silentpush.com"
-                    },
+                    "subject": {"common_name": "*.silentpush.com"},
                     "subject_key_id": "BC:FE:D5:29:D1:E0:C7:74:10:DD:47:EA:07:D5:79:F8:FE:2A:4D:A6",
-                    "wildcard": True
+                    "wildcard": True,
                 },
                 "subdomain": "app",
                 "tld": "com",
                 "url": "https://app.silentpush.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3"
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3",
             },
             {
                 "HHV": "ef1c3b01903730bb3ea3502c1d",  # pragma: allowlist secret
-                "adtech": {
-                    "ads_txt": False,
-                    "app_ads_txt": False,
-                    "sellers_json": False
-                },
+                "adtech": {"ads_txt": False, "app_ads_txt": False, "sellers_json": False},
                 "body_analysis": {
                     "SHV": "9ac3fb2c596644f196b75d6a79",  # pragma: allowlist secret
                     "adsense": [],
                     "body_sha256": "685bb219c419e05b39eca78c175dad481e3662645284199facd746a87065ca34",  # pragma: allowlist secret
-                    "google-GA4": [
-                        "G-5G0ZMXH8S2"
-                    ],
+                    "google-GA4": ["G-5G0ZMXH8S2"],
                     "google-UA": [],
                     "google-adstag": [],
                     "js_sha256": [
@@ -1753,7 +1353,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             315c2f79e8d713744d5c5f6307636f68c2db5f4730fac8a69f1e45a1f67757b7",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b---66047ac9cbafd.js\
-                            82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880"
+                            82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880",
                     ],
                     "js_ssdeep": [
                         "'use strict';var avi 12:EqJmXV621ERBZMURaGUSZWmRsmRV/7n67mRV/IORmRV/2Vb:L+CRjDRlUvmRsmRVznKmRV/mRV+Vb",
@@ -1764,12 +1364,10 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             48:4QqugYkpwADOWAYWPjkpwuDunpcd0pwmpUudkpwdI:dRaeNp4eSKcd0eIj+e+",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b---66047ac9cbafd.js 192:\
-                            W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S"
+                            W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S",
                     ],
-                    "language": [
-                        "English"
-                    ],
-                    "onion": []
+                    "language": ["English"],
+                    "onion": [],
                 },
                 "datahash": "8f55094ef67377174dd6dbe4006bfd3bee14d13c464253b3055f855355632f3f",  # pragma: allowlist secret
                 "datasource": "webscan",
@@ -1779,23 +1377,17 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "favicon2_murmur3": -2032288512,
                 "favicon2_path": "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg",
                 "favicon_md5": "",
-                "favicon_urls": [
-                    "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"
-                ],
+                "favicon_urls": ["https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"],
                 "file": False,
                 "file_sha256": "",
-                "geoip": {
-                    "as_org": "CLOUDFLARENET",
-                    "asn": 13335,
-                    "ip": "104.26.10.149"
-                },
+                "geoip": {"as_org": "CLOUDFLARENET", "asn": 13335, "ip": "104.26.10.149"},
                 "header": {
                     "cache-control": "max-age=600, must-revalidate",
                     "connection": "keep-alive",
                     "content-encoding": "gzip",
                     "content-type": "text/html; charset=UTF-8",
                     "server": "cloudflare",
-                    "x-powered-by": "WP Engine"
+                    "x-powered-by": "WP Engine",
                 },
                 "hostname": "www.silentpush.com",
                 "html_body_length": 110890,
@@ -1818,7 +1410,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "2606:4700:20::ac43:460d",
                     "172.67.70.13",
                     "2606:4700:20::681a:b95",
-                    "104.26.10.149"
+                    "104.26.10.149",
                 ],
                 "origin_scheme": "https",
                 "origin_url": "https://www.silentpush.com",
@@ -1832,7 +1424,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "2606:4700:20::ac43:460d",
                     "172.67.70.13",
                     "2606:4700:20::681a:b95",
-                    "104.26.10.149"
+                    "104.26.10.149",
                 ],
                 "response": 200,
                 "scan_date": "2024-04-17 15:43:55",
@@ -1843,44 +1435,30 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "SHA256": "4B:7B:E2:3F:61:E5:3A:E8:09:26:72:84:64:0C:CF:BA:25:99:76:B2:73:C6:C0:46:C2:89:61:98:8E:75:DF:21",
                     "authority_key_id": "5A:F3:ED:2B:FC:36:C2:37:79:B9:52:30:EA:54:6F:CF:55:CB:2E:AC",
                     "expired": False,
-                    "issuer": {
-                        "common_name": "E1",
-                        "country": "US",
-                        "organization": "Let's Encrypt"
-                    },
+                    "issuer": {"common_name": "E1", "country": "US", "organization": "Let's Encrypt"},
                     "not_after": "2024-07-14T18:38:24Z",
                     "not_before": "2024-04-15T18:38:25Z",
-                    "sans": [
-                        "www.silentpush.com"
-                    ],
+                    "sans": ["www.silentpush.com"],
                     "sans_count": 1,
                     "serial_number": "433625883763564008410694711475305342226691",
                     "sigalg": "ecdsa-with-SHA384",
-                    "subject": {
-                        "common_name": "www.silentpush.com"
-                    },
+                    "subject": {"common_name": "www.silentpush.com"},
                     "subject_key_id": "AE:8D:F1:0A:D6:4B:24:47:EA:1E:22:B3:E1:EB:BE:ED:06:3F:45:3A",
-                    "wildcard": False
+                    "wildcard": False,
                 },
                 "subdomain": "www",
                 "tld": "com",
                 "url": "https://www.silentpush.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3"
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3",
             },
             {
                 "HHV": "ef1c3b01903730bb3ea3502c1d",  # pragma: allowlist secret
-                "adtech": {
-                    "ads_txt": False,
-                    "app_ads_txt": False,
-                    "sellers_json": False
-                },
+                "adtech": {"ads_txt": False, "app_ads_txt": False, "sellers_json": False},
                 "body_analysis": {
                     "SHV": "9ac3fb2c596644f196b75d6a79",  # pragma: allowlist secret
                     "adsense": [],
                     "body_sha256": "355cd9b700f277b3e38989c4cb5397c9a547d5cde33bb16fa09ace66782d99f6",  # pragma: allowlist secret
-                    "google-GA4": [
-                        "G-5G0ZMXH8S2"
-                    ],
+                    "google-GA4": ["G-5G0ZMXH8S2"],
                     "google-UA": [],
                     "google-adstag": [],
                     "js_sha256": [
@@ -1891,7 +1469,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             315c2f79e8d713744d5c5f6307636f68c2db5f4730fac8a69f1e45a1f67757b7",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b---66047ac9cbafd.js\
-                            82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880"
+                            82ad775e3ec1ee52a0fe479d964879edef28e04320db46038f54663f7fe0a880",
                     ],
                     "js_ssdeep": [
                         "'use strict';var avi 12:EqJmXV621ERBZMURaGUSZWmRsmRV/7n67mRV/IORmRV/2Vb:L+CRjDRlUvmRsmRVznKmRV/mRV+Vb",
@@ -1902,12 +1480,10 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                         "https://js.hs-scripts.com/9153394.js?integration=WordPress&ver=11.0.23 \
                             48:4QqugYkpwADOWAYWPjkpwuDunpcd0pwmpUudkpwdI:dRaeNp4eSKcd0eIj+e+",
                         "https://www.silentpush.com/wp-content/uploads/dynamic_avia/avia-footer-scripts-5d2214549799fe1101a076e15f98a76b---66047ac9cbafd.js\
-                            192:W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S"
+                            192:W1owW0qbb5FkaPk4lNNSawuSUzeEQMOYgY1agYeYPcY1jS/0X49N6b9nuY1QoC0q:4oP9/DZsuHaFIn76bT1YC6CZGE/S",
                     ],
-                    "language": [
-                        "English"
-                    ],
-                    "onion": []
+                    "language": ["English"],
+                    "onion": [],
                 },
                 "datahash": "deac943cba06e4df2248155889cfd3fdb84c1e78418c469a13d79e95a2f8a9c1",  # pragma: allowlist secret
                 "datasource": "webscan",
@@ -1917,23 +1493,17 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "favicon2_murmur3": -2032288512,
                 "favicon2_path": "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg",
                 "favicon_md5": "",
-                "favicon_urls": [
-                    "https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"
-                ],
+                "favicon_urls": ["https://www.silentpush.com/wp-content/uploads/Silent-Push-Favicon-1.jpg"],
                 "file": False,
                 "file_sha256": "",
-                "geoip": {
-                    "as_org": "CLOUDFLARENET",
-                    "asn": 13335,
-                    "ip": "104.26.10.149"
-                },
+                "geoip": {"as_org": "CLOUDFLARENET", "asn": 13335, "ip": "104.26.10.149"},
                 "header": {
                     "cache-control": "max-age=600, must-revalidate",
                     "connection": "keep-alive",
                     "content-encoding": "gzip",
                     "content-type": "text/html; charset=UTF-8",
                     "server": "cloudflare",
-                    "x-powered-by": "WP Engine"
+                    "x-powered-by": "WP Engine",
                 },
                 "hostname": "www.silentpush.com",
                 "html_body_length": 110890,
@@ -1956,7 +1526,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "104.26.10.149",
                     "104.26.11.149",
                     "172.67.70.13",
-                    "2606:4700:20::ac43:460d"
+                    "2606:4700:20::ac43:460d",
                 ],
                 "origin_scheme": "http",
                 "origin_url": "http://www.silentpush.com",
@@ -1964,9 +1534,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                 "port": 443,
                 "redirect": True,
                 "redirect_count": 1,
-                "redirect_list": [
-                    "https://www.silentpush.com/"
-                ],
+                "redirect_list": ["https://www.silentpush.com/"],
                 "redirect_to_https": True,
                 "resolves_to": [
                     "2606:4700:20::681a:b95",
@@ -1974,7 +1542,7 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "104.26.10.149",
                     "104.26.11.149",
                     "172.67.70.13",
-                    "2606:4700:20::ac43:460d"
+                    "2606:4700:20::ac43:460d",
                 ],
                 "response": 200,
                 "scan_date": "2024-04-17 15:41:55",
@@ -1985,32 +1553,24 @@ SEARCH_SCAN_DATA_VALID_RESP = {
                     "SHA256": "4B:7B:E2:3F:61:E5:3A:E8:09:26:72:84:64:0C:CF:BA:25:99:76:B2:73:C6:C0:46:C2:89:61:98:8E:75:DF:21",
                     "authority_key_id": "5A:F3:ED:2B:FC:36:C2:37:79:B9:52:30:EA:54:6F:CF:55:CB:2E:AC",
                     "expired": False,
-                    "issuer": {
-                        "common_name": "E1",
-                        "country": "US",
-                        "organization": "Let's Encrypt"
-                    },
+                    "issuer": {"common_name": "E1", "country": "US", "organization": "Let's Encrypt"},
                     "not_after": "2024-07-14T18:38:24Z",
                     "not_before": "2024-04-15T18:38:25Z",
-                    "sans": [
-                        "www.silentpush.com"
-                    ],
+                    "sans": ["www.silentpush.com"],
                     "sans_count": 1,
                     "serial_number": "433625883763564008410694711475305342226691",
                     "sigalg": "ecdsa-with-SHA384",
-                    "subject": {
-                        "common_name": "www.silentpush.com"
-                    },
+                    "subject": {"common_name": "www.silentpush.com"},
                     "subject_key_id": "AE:8D:F1:0A:D6:4B:24:47:EA:1E:22:B3:E1:EB:BE:ED:06:3F:45:3A",
-                    "wildcard": False
+                    "wildcard": False,
                 },
                 "subdomain": "www",
                 "tld": "com",
                 "url": "https://www.silentpush.com",
-                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3"
-            }
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.3",
+            },
         ]
-    }
+    },
 }
 
 GET_FUTURE_ATTACK_FEED_VALID_RESP = [
@@ -2051,7 +1611,7 @@ GET_FUTURE_ATTACK_FEED_VALID_RESP = [
         "source_accuracy_score": 100,
         "total_source_score": 100,
         "total": 100,
-        "collected_tags": []
+        "collected_tags": [],
     }
 ]
 
@@ -2062,9 +1622,9 @@ LIVE_URL_SCREENSHOT_VALID_RESP = {
         "screenshot": {
             "message": "https://fs.silentpush.com/screenshots/silentpush.com/82ec8d7fc8af8d322959dead594c7f8e.jpg",
             "response": 200,
-            "url": "http://www.silentpush.com"
+            "url": "http://www.silentpush.com",
         }
-    }
+    },
 }
 
 VAULT_META_INFO = [
@@ -2084,17 +1644,12 @@ VAULT_META_INFO = [
         "path": "/opt/phantom/vault/ba/9d/ba9d018bb2fb512b3fb58c4a015d804372c4f3cb",
         "metadata": {
             "sha1": "ba9d018bb2fb512b3fb58c4a015d804372c4f3cb",  # pragma: allowlist secret
-            "sha256": "d60a0a0b5bb9157aa3f04a0f666bf86db5c943240e6ae61b2cd5225b29ada768"  # pragma: allowlist secret
+            "sha256": "d60a0a0b5bb9157aa3f04a0f666bf86db5c943240e6ae61b2cd5225b29ada768",  # pragma: allowlist secret
         },
-        "aka": [
-            "801138f4-b34f-4f82-9c5c-588cf0c50ea3.jpg",
-            "d57169ea-6181-46d3-b72a-7de47cf97bad.jpg"
-        ],
+        "aka": ["801138f4-b34f-4f82-9c5c-588cf0c50ea3.jpg", "d57169ea-6181-46d3-b72a-7de47cf97bad.jpg"],
         "container_id": 1,
-        "contains": [
-            "vault id"
-        ]
+        "contains": ["vault id"],
     }
 ]
 
-IMAGE_RESPONSE = b'/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3N8A'
+IMAGE_RESPONSE = b"/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3N8A"

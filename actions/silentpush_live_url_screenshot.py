@@ -1,6 +1,6 @@
 # File: silentpush_live_url_screenshot.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -40,23 +40,18 @@ class LiveUrlScreenshot(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format('live_url_screenshot'))
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("live_url_screenshot"))
 
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint,
-            method=method,
-            param=query_params)
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
     def __get_query_params(self):
         """Get request query parameters"""
-        query_params = {
-            "url": "url"
-        }
+        query_params = {"url": "url"}
 
         payload = {}
         for key, value in query_params.items():
@@ -67,19 +62,14 @@ class LiveUrlScreenshot(BaseAction):
 
     def __get_request_url_and_method(self):
         """Get request endpoint and method"""
-        return consts.LIVE_URL_SCREENSHOT_ENDPOINT, 'get'
+        return consts.LIVE_URL_SCREENSHOT_ENDPOINT, "get"
 
     def __make_rest_call(self, url, method, headers=None, param=None):
         """Invoke API"""
-        args = {
-            "endpoint": url,
-            "action_result": self._action_result,
-            "method": method.lower(),
-            "headers": headers or {}
-        }
+        args = {"endpoint": url, "action_result": self._action_result, "method": method.lower(), "headers": headers or {}}
 
         if param:
-            args['endpoint'] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         return self._connector.util.make_rest_call(**args)
 
@@ -110,15 +100,15 @@ class LiveUrlScreenshot(BaseAction):
         Returns:
             Tuple: A tuple containing the status, vault ID, and meta information.
         """
-        if not hasattr(Vault, 'get_vault_tmp_dir'):
+        if not hasattr(Vault, "get_vault_tmp_dir"):
             temp_dir = Vault.get_vault_tmp_dir()
         else:
             temp_dir = os.path.join(paths.PHANTOM_VAULT, "tmp")
 
-        file_path = tempfile.NamedTemporaryFile(dir=temp_dir, suffix='.jpg', prefix="tmp_", delete=False).name
+        file_path = tempfile.NamedTemporaryFile(dir=temp_dir, suffix=".jpg", prefix="tmp_", delete=False).name
 
         try:
-            with open(file_path, 'wb') as f:
+            with open(file_path, "wb") as f:
                 f.write(image)
 
             success, msg, vault_id = ph_rules.vault_add(
@@ -127,20 +117,20 @@ class LiveUrlScreenshot(BaseAction):
                 file_name=file_name,
             )
             if not success:
-                return self._action_result.set_status(phantom.APP_ERROR,
-                                                      f'Error adding file to the vault, Error: {msg}'), None, None
+                return self._action_result.set_status(phantom.APP_ERROR, f"Error adding file to the vault, Error: {msg}"), None, None
 
             _, _, vault_meta_info = ph_rules.vault_info(container_id=self._connector.get_container_id(), vault_id=vault_id)
             if not vault_meta_info:
-                return self._action_result.set_status(phantom.APP_ERROR,
-                                                      "Could not find meta information of the downloaded screenshot's Vault"), None, None
+                return (
+                    self._action_result.set_status(phantom.APP_ERROR, "Could not find meta information of the downloaded screenshot's Vault"),
+                    None,
+                    None,
+                )
 
         except Exception as e:
-            return self._action_result.set_status(phantom.APP_ERROR,
-                                                  f"Failed to download screenshot in Vault. Error : {e}"), None, None
+            return self._action_result.set_status(phantom.APP_ERROR, f"Failed to download screenshot in Vault. Error : {e}"), None, None
 
-        return self._action_result.set_status(phantom.APP_SUCCESS,
-                                              "Screenshot downloaded successfully"), vault_id, vault_meta_info
+        return self._action_result.set_status(phantom.APP_SUCCESS, "Screenshot downloaded successfully"), vault_id, vault_meta_info
 
     def __handle_response(self, ret_val, response):
         """Process response received from the third party API"""
@@ -149,8 +139,10 @@ class LiveUrlScreenshot(BaseAction):
 
         self._action_result.add_data(response)
 
-        if response.get("response", {}).get("screenshot", {}).get("message") and \
-                response.get("response", {}).get("screenshot", {}).get("response") != 200:
+        if (
+            response.get("response", {}).get("screenshot", {}).get("message")
+            and response.get("response", {}).get("screenshot", {}).get("response") != 200
+        ):
             return self._action_result.set_status(phantom.APP_ERROR, response.get("response", {}).get("screenshot", {}).get("message"))
         elif not response.get("response", {}).get("screenshot", {}).get("message"):
             return self._action_result.set_status(phantom.APP_ERROR, "Could not find meta information of the screenshot's")
@@ -170,8 +162,8 @@ class LiveUrlScreenshot(BaseAction):
         summary = {
             phantom.APP_JSON_VAULT_ID: vault_id,
             phantom.APP_JSON_NAME: file_name,
-            "id": vault_meta_info[0]['id'],
-            phantom.APP_JSON_SIZE: vault_meta_info[0][phantom.APP_JSON_SIZE]
+            "id": vault_meta_info[0]["id"],
+            phantom.APP_JSON_SIZE: vault_meta_info[0][phantom.APP_JSON_SIZE],
         }
         self._action_result.update_summary(summary)
 

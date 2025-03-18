@@ -1,19 +1,18 @@
 {% extends 'widgets/widget_template.html' %}
 {% load custom_template %}
-
-{% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
+{% block custom_title_prop %}
+  {% if title_logo %}
+    style="background-size: auto 60%; background-position: 50%;
+    background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"
+  {% endif %}
+{% endblock %}
 {% block title1 %}{{ title1 }}{% endblock %}
 {% block title2 %}{{ title2 }}{% endblock %}
-{% block custom_tools %}
-{% endblock %}
-
+{% block custom_tools %}{% endblock %}
 {% block widget_content %}
-<!-- Main Start Block -->
-
-<!--File: silentpush_list_domain_information.html
-
-Copyright (c) 2024 Splunk Inc.
+  <!-- Main Start Block -->
+  <!--File: silentpush_list_domain_information.html
+Copyright (c) 2024-2025 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -26,8 +25,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 either express or implied. See the License for the specific language governing permissions
 and limitations under the License.
 -->
-
-<style>
+  <style>
     .silentpush a:hover {
         text-decoration: underline;
     }
@@ -102,133 +100,131 @@ and limitations under the License.
         width: 80px;
     }
 
-</style>
-
-<div class="silentpush" style="overflow: auto; width: 100%; height: 100%; padding-left:10px; padding-right:10px">
+  </style>
+  <div class="silentpush"
+       style="overflow: auto;
+              width: 100%;
+              height: 100%;
+              padding-left:10px;
+              padding-right:10px">
     <!-- Main Div -->
     {% for result in results %}
-    <!-- loop for each result -->
-    <!------------------- For each Result ---------------------->
-    {% if not result.data %}
-    <h4 class="wf-h4-style">No data found</h4>
-    {% else %}
-    {% if result.is_domain_found %}
-    <div class="results">
-        <!--Default View-->
-        <h3 class="center">Domain Information</h3>
-        <table class="wf-table-horizontal datatable">
-            <thead>
+      <!-- loop for each result -->
+      <!------------------- For each Result ---------------------->
+      {% if not result.data %}
+        <h4 class="wf-h4-style">No data found</h4>
+      {% else %}
+        {% if result.is_domain_found %}
+          <div class="results">
+            <!--Default View-->
+            <h3 class="center">Domain Information</h3>
+            <table class="wf-table-horizontal datatable">
+              <thead>
                 <tr>
-                    <th>Domain</th>
-                    <th>Query</th>
-                    {% if result.data.0.risk_score %}
-                        <th>Risk Score</th>
-                        <th>Risk Score Decider</th>
-                    {% endif %}
-                    <th>Registrar</th>
-                    <th>Whois Created Date</th>
-                    {% if result.data.0.live_whois_information %}
-                        <th>Whois Expires Date</th>
-                        <th>Organisation</th>
-                        <th>Name Servers</th>
-                    {% endif %}
+                  <th>Domain</th>
+                  <th>Query</th>
+                  {% if result.data.0.risk_score %}
+                    <th>Risk Score</th>
+                    <th>Risk Score Decider</th>
+                  {% endif %}
+                  <th>Registrar</th>
+                  <th>Whois Created Date</th>
+                  {% if result.data.0.live_whois_information %}
+                    <th>Whois Expires Date</th>
+                    <th>Organisation</th>
+                    <th>Name Servers</th>
+                  {% endif %}
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 {% for domain in result.data.0.domain_information %}
-                {% if not domain.error %}
-                <tr>
-                    <td class="cell-width">
+                  {% if not domain.error %}
+                    <tr>
+                      <td class="cell-width">
                         {% if domain.domain %}
-                        <a href="javascript:;"
-                            onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ domain.domain }}' }], 0, {{ container.id }}, null, false);">
-                            <span class="fa fa-caret-down" style="font-size: smaller;">
-                                {{ domain.domain }}
-                            </span>
-                        </a>
+                          <a href="javascript:;"
+                             onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ domain.domain }}' }], 0, {{ container.id }}, null, false);">
+                            <span class="fa fa-caret-down" style="font-size: smaller;">{{ domain.domain }}</span>
+                          </a>
                         {% else %}
-                        None
+                          None
                         {% endif %}
-                    </td>
-                    <td>
+                      </td>
+                      <td>
                         {% if domain.query %}
-                        <a href="javascript:;"
-                            onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ domain.query }}' }], 0, {{ container.id }}, null, false);">
-                            <span class="fa fa-caret-down" style="font-size: smaller;">
-                                {{ domain.query }}
-                            </span>
-                        </a>
+                          <a href="javascript:;"
+                             onclick="context_menu(this, [{'contains': ['domain'], 'value': '{{ domain.query }}' }], 0, {{ container.id }}, null, false);">
+                            <span class="fa fa-caret-down" style="font-size: smaller;">{{ domain.query }}</span>
+                          </a>
                         {% else %}
-                        None
+                          None
                         {% endif %}
-                    </td>
-                    {% if result.data.0.risk_score %}
+                      </td>
+                      {% if result.data.0.risk_score %}
                         {% for risk_score in result.data.0.risk_score %}
-                            {% if risk_score.domain == domain.domain or risk_score.domain == domain.query %}
-                                <td>{{ risk_score.sp_risk_score | default:"None" }}</td>
-                                <td>{{ risk_score.sp_risk_score_explain.sp_risk_score_decider | default:"None" }}</td>
-                            {% endif %}
+                          {% if risk_score.domain == domain.domain or risk_score.domain == domain.query %}
+                            <td>{{ risk_score.sp_risk_score | default:"None" }}</td>
+                            <td>{{ risk_score.sp_risk_score_explain.sp_risk_score_decider | default:"None" }}</td>
+                          {% endif %}
                         {% endfor %}
-                    {% endif %}
-                    <td>
+                      {% endif %}
+                      <td>
                         {% if domain.registrar %}
-                        <a href="javascript:;"
-                            onclick="context_menu(this, [{'contains': ['silent push registrar'], 'value': '{{ domain.registrar }}' }], 0, {{ container.id }}, null, false);">
-                            <span class="fa fa-caret-down" style="font-size: smaller;">
-                                {{ domain.registrar }}
-                            </span>
-                        </a>
+                          <a href="javascript:;"
+                             onclick="context_menu(this, [{'contains': ['silent push registrar'], 'value': '{{ domain.registrar }}' }], 0, {{ container.id }}, null, false);">
+                            <span class="fa fa-caret-down" style="font-size: smaller;">{{ domain.registrar }}</span>
+                          </a>
                         {% else %}
-                        None
+                          None
                         {% endif %}
-                    </td>
-                    <td>{{ domain.whois_is_created | default:"None" }}</td>
-                    {% if result.data.0.live_whois_information %}
+                      </td>
+                      <td>{{ domain.whois_is_created | default:"None" }}</td>
+                      {% if result.data.0.live_whois_information %}
                         {% for whois in result.data.0.live_whois_information %}
-                            {% if whois.domain == domain.domain or whois.domain == domain.query %}
-                                <td>{{ whois.expires | default:"None" }}</td>
-                                <td>{{ whois.org | default:"None" }}</td>
-                                <td>{{ whois.nameservers | default:"None" }}</td>
-                            {% endif %}
+                          {% if whois.domain == domain.domain or whois.domain == domain.query %}
+                            <td>{{ whois.expires | default:"None" }}</td>
+                            <td>{{ whois.org | default:"None" }}</td>
+                            <td>{{ whois.nameservers | default:"None" }}</td>
+                          {% endif %}
                         {% endfor %}
-                    {% endif %}
-                </tr>
-                {% endif %}
+                      {% endif %}
+                    </tr>
+                  {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endif%}
-    <br>
-    {% if result.is_domain_error%}
-    <div class="results">
-        <h3 class="center">Error Information</h3>
-        <table class="wf-table-horizontal datatable">
-            <thead>
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+        <br>
+        {% if result.is_domain_error %}
+          <div class="results">
+            <h3 class="center">Error Information</h3>
+            <table class="wf-table-horizontal datatable">
+              <thead>
                 <tr>
-                    <th>Domain</th>
-                    <th>Error</th>
+                  <th>Domain</th>
+                  <th>Error</th>
                 </tr>
-            </thead>
-            <tbody>
+              </thead>
+              <tbody>
                 {% for domain in result.data.0.domain_information %}
-                {% if domain.error %}
-                <tr>
-                    <td>{{ domain.query }}</td>
-                    <td>{{ domain.error }}</td>
-                </tr>
-                {% endif %}
+                  {% if domain.error %}
+                    <tr>
+                      <td>{{ domain.query }}</td>
+                      <td>{{ domain.error }}</td>
+                    </tr>
+                  {% endif %}
                 {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    {% endif %}
-    {% endif %}
+              </tbody>
+            </table>
+          </div>
+        {% endif %}
+      {% endif %}
     {% endfor %}
     <!-- loop for each result end -->
-</div> <!-- Main Div -->
-
-<script>
+  </div>
+  <!-- Main Div -->
+  <script>
     $.extend(true, $.fn.dataTable.defaults, {
         "searching": false,
         "bLengthChange": false,
@@ -246,6 +242,6 @@ and limitations under the License.
     });
     $.fn.DataTable.ext.pager.numbers_length = 5;
     $('.datatable').DataTable();
-</script>
+  </script>
 {% endblock %}
 <!-- Main Start Block -->

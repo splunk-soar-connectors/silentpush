@@ -1,6 +1,6 @@
 # File: silentpush_get_enrichment_data.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class GetEnrichmentData(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("get_enrichment_data")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("get_enrichment_data"))
 
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):
@@ -46,9 +44,7 @@ class GetEnrichmentData(BaseAction):
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint, method=method, param=query_params
-        )
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
@@ -92,9 +88,7 @@ class GetEnrichmentData(BaseAction):
 
         endpoint = consts.GET_ENRICHMENT_DATA_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace(
-                "{{##}}".replace("##", parameter), str(self._param.get(parameter))
-            )
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
 
         return endpoint, "get"
 
@@ -108,7 +102,7 @@ class GetEnrichmentData(BaseAction):
         }
 
         if param:
-            args["endpoint"] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         if self._param["resource"] == "domain":
             args["error_path"] = "response.domaininfo.error"
@@ -123,11 +117,7 @@ class GetEnrichmentData(BaseAction):
 
         self._action_result.add_data(response)
 
-        summary = {
-            "total_enrichment_data": len(response.get("response", {}).get("ip2asn", [])) or 1
-        }
+        summary = {"total_enrichment_data": len(response.get("response", {}).get("ip2asn", [])) or 1}
         self._action_result.update_summary(summary)
 
-        return self._action_result.set_status(
-            phantom.APP_SUCCESS, consts.ACTION_ENRICHMENT_SUCCESS_RESPONSE
-        )
+        return self._action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_ENRICHMENT_SUCCESS_RESPONSE)

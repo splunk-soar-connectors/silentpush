@@ -1,6 +1,6 @@
 # File: test_silentpush_list_ip_information.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,9 +36,7 @@ class SilentpushAction(unittest.TestCase):
             **self.test_json["config"],
             **silentpush_constant.APIKEY_AUTH_CONFIG,
         }
-        self.test_json.update(
-            {"action": "list ip information", "identifier": "list_ip_information"}
-        )
+        self.test_json.update({"action": "list ip information", "identifier": "list_ip_information"})
         self.run_job_endpoint = consts.LIST_IP_INFORMATION_ENDPOINT
 
         return super().setUp()
@@ -48,15 +46,11 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the post() to run job.
         """
-        self.test_json["parameters"] = [
-            {"ips": "8.8.8.8, 2001:0db8:85a3:0000:0000:8a2e:0370:7363"}
-        ]
+        self.test_json["parameters"] = [{"ips": "8.8.8.8, 2001:0db8:85a3:0000:0000:8a2e:0370:7363"}]
 
         mock_post.return_value.status_code = 200
         mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_post.return_value.json.return_value = (
-            silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
-        )
+        mock_post.return_value.json.return_value = silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
 
         req_data_ipv4 = {"ips": ["8.8.8.8"]}
         req_data_ipv6 = {"ips": ["2001:0db8:85a3:0000:0000:8a2e:0370:7363"]}
@@ -69,14 +63,14 @@ class SilentpushAction(unittest.TestCase):
 
         expected_calls = [
             call(
-                f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv4")}',
+                f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv4')}",
                 timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                 verify=False,
                 headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
                 json=req_data_ipv4,
             ),
             call(
-                f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv6")}',
+                f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv6')}",
                 timeout=consts.REQUEST_DEFAULT_TIMEOUT,
                 verify=False,
                 headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -116,9 +110,7 @@ class SilentpushAction(unittest.TestCase):
 
         mock_post.return_value.status_code = 400
         mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_post.return_value.json.return_value = (
-            silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
-        )
+        mock_post.return_value.json.return_value = silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
 
         req_data = {"ips": ["8.8.8.8", "10.10.10.10"]}
 
@@ -129,7 +121,7 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "failed")
 
         mock_post.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv4")}',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv4')}",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -141,14 +133,11 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the post() to run job.
         """
-        self.test_json["parameters"] = [
-            {"ips": "2001:db8:3333:4444:5555:6666:7777:8888, 2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF"}]
+        self.test_json["parameters"] = [{"ips": "2001:db8:3333:4444:5555:6666:7777:8888, 2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF"}]
 
         mock_post.return_value.status_code = 400
         mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_post.return_value.json.return_value = (
-            silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
-        )
+        mock_post.return_value.json.return_value = silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
 
         req_data = {"ips": ["2001:db8:3333:4444:5555:6666:7777:8888", "2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF"]}
 
@@ -159,7 +148,7 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "failed")
 
         mock_post.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv6")}',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv6')}",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -175,9 +164,7 @@ class SilentpushAction(unittest.TestCase):
 
         mock_post.return_value.status_code = 200
         mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_post.return_value.json.return_value = (
-            silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
-        )
+        mock_post.return_value.json.return_value = silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
 
         req_data = {"ips": ["8.8.8.8", "10.10.10.10"]}
 
@@ -188,7 +175,7 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_post.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv4")}',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv4')}",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
@@ -200,17 +187,11 @@ class SilentpushAction(unittest.TestCase):
 
         Patch the post() to run job.
         """
-        self.test_json["parameters"] = [
-            {
-                "ips": "2001:db8:3333:4444:5555:6666:7777:8888, 2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF"
-            }
-        ]
+        self.test_json["parameters"] = [{"ips": "2001:db8:3333:4444:5555:6666:7777:8888, 2001:db8:3333:4444:CCCC:DDDD:EEEE:FFFF"}]
 
         mock_post.return_value.status_code = 200
         mock_post.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_post.return_value.json.return_value = (
-            silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
-        )
+        mock_post.return_value.json.return_value = silentpush_responses.LIST_IP_INFORMATION_VALID_RESP
 
         req_data = {
             "ips": [
@@ -226,7 +207,7 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_post.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}{self.run_job_endpoint.replace("{{resource}}", "ipv6")}',
+            f"{self.test_json['config']['base_url']}{self.run_job_endpoint.replace('{{resource}}', 'ipv6')}",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},

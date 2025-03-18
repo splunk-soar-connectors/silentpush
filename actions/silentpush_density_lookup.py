@@ -1,6 +1,6 @@
 # File: silentpush_density_lookup.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class DensityLookup(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("density_lookup")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("density_lookup"))
 
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):
@@ -46,9 +44,7 @@ class DensityLookup(BaseAction):
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint, method=method, param=query_params
-        )
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
@@ -99,9 +95,7 @@ class DensityLookup(BaseAction):
 
         endpoint = consts.DENSITY_LOOKUP_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace(
-                "{{##}}".replace("##", parameter), str(self._param.get(parameter))
-            )
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
 
         return endpoint, "get"
 
@@ -115,7 +109,7 @@ class DensityLookup(BaseAction):
         }
 
         if param:
-            args["endpoint"] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         args["error_path"] = "response.error"
         return self._connector.util.make_rest_call(**args)
@@ -127,6 +121,4 @@ class DensityLookup(BaseAction):
 
         self._action_result.add_data(response)
 
-        return self._action_result.set_status(
-            phantom.APP_SUCCESS, consts.ACTION_DENSITY_LOOKUP_SUCCESS_RESPONSE
-        )
+        return self._action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_DENSITY_LOOKUP_SUCCESS_RESPONSE)
