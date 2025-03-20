@@ -10,7 +10,7 @@
     "python_version": "3",
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
-    "license": "Copyright (c) 2024 Splunk Inc.",
+    "license": "Copyright (c) 2024-2025 Splunk Inc.",
     "app_version": "1.0.1",
     "utctime_updated": "2024-04-02T11:55:08.841379Z",
     "package_name": "phantom_silentpush",

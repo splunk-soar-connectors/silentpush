@@ -1,6 +1,6 @@
 # File: silentpush_consts.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -77,8 +77,7 @@ GET_ASN_REPUTATION_ENDPOINT = "/api/v1/merge-api/explore/ipreputation/history/as
 GET_ASN_TAKEDOWN_REPUTATION_ENDPOINT = "/api/v1/merge-api/explore/takedownreputation/history/asn/{{asn}}"
 GET_IPV4_REPUTATION_ENDPOINT = "/api/v1/merge-api/explore/ipreputation/history/ipv4/{{ipv4}}"
 GET_JOB_STATUS_ENDPOINT = "/api/v1/merge-api/explore/job/{{job_id}}"
-GET_JOB_STATUS_RESULT_TYPE_OPTIONS = {'status': 'status_only', 'include metadata': 'force_metadata_on',
-                                      'exclude metadata': 'force_metadata_off'}
+GET_JOB_STATUS_RESULT_TYPE_OPTIONS = {"status": "status_only", "include metadata": "force_metadata_on", "exclude metadata": "force_metadata_off"}
 GET_NAMESERVER_REPUTATION_ENDPOINT = "/api/v1/merge-api/explore/nsreputation/history/nameserver/{{nameserver}}"
 GET_SUBNET_REPUTATION_ENDPOINT = "/api/v1/merge-api/explore/ipreputation/history/subnet/{{subnet}}"
 GET_ASNS_SEEN_FOR_DOMAIN_ENDPOINT = "/api/v1/merge-api/explore/padns/lookup/domain/asns/{{domain}}"
@@ -105,7 +104,7 @@ DENSITY_LOOKUP_QTYPE_OPTIONS = {
     "ipv4": "ipv4",
     "ipv6": "ipv6",
     "asn": "asn",
-    "chv": "chv"
+    "chv": "chv",
 }
 DENSITY_LOOKUP_SCOPE_OPTIONS = {
     "ip": "ip",
@@ -117,7 +116,7 @@ DENSITY_LOOKUP_SCOPE_OPTIONS = {
     "domain": "domain",
     "subdomain": "subdomain",
     "chv": "chv",
-    "chv analysis": "chv_analysis"
+    "chv analysis": "chv_analysis",
 }
 LIVE_URL_SCAN_PLATFORM_OPTIONS = {
     "desktop": "Desktop",
@@ -165,5 +164,5 @@ REVERSE_PADNS_LOOKUP_QTYPE_OPTIONS = {
     "mxhash": "mxhash",
     "nshash": "nshash",
     "soahash": "soahash",
-    "txthash": "txthash"
+    "txthash": "txthash",
 }

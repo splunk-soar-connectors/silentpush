@@ -1,6 +1,6 @@
 # File: silentpush_reverse_padns_lookup.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -35,9 +35,7 @@ class ReversePadnsLookup(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(
-            consts.EXECUTION_START_MESSAGE.format("reverse_padns_lookup")
-        )
+        self._connector.save_progress(consts.EXECUTION_START_MESSAGE.format("reverse_padns_lookup"))
 
         ret_val = self.__validate_params()
         if phantom.is_fail(ret_val):
@@ -46,9 +44,7 @@ class ReversePadnsLookup(BaseAction):
         query_params = self.__get_query_params()
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint, method=method, param=query_params
-        )
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method, param=query_params)
 
         return self.__handle_response(ret_val, response)
 
@@ -128,9 +124,7 @@ class ReversePadnsLookup(BaseAction):
             self._param["skip"] = value
 
         if "limit" in self._param:
-            ret_val, value = self._connector.validator.validate_integer(
-                self._action_result, self._param.get("limit"), "limit"
-            )
+            ret_val, value = self._connector.validator.validate_integer(self._action_result, self._param.get("limit"), "limit")
 
             if not ret_val:
                 return ret_val
@@ -138,8 +132,7 @@ class ReversePadnsLookup(BaseAction):
             self._param["limit"] = value
 
         if "sort" in self._param:
-            sort_list = [clean_sort for sort in self._param.get('sort', "").split(',') if (
-                clean_sort := sort.strip())]
+            sort_list = [clean_sort for sort in self._param.get("sort", "").split(",") if (clean_sort := sort.strip())]
 
             if len(sort_list):
                 self._param["sort"] = "&sort=".join(sort_list)
@@ -191,9 +184,7 @@ class ReversePadnsLookup(BaseAction):
 
         endpoint = consts.REVERSE_PADNS_LOOKUP_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace(
-                "{{##}}".replace("##", parameter), str(self._param.get(parameter))
-            )
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
 
         return endpoint, "get"
 
@@ -207,7 +198,7 @@ class ReversePadnsLookup(BaseAction):
         }
 
         if param:
-            args["endpoint"] = f'{args["endpoint"]}?{urlencode(param)}'
+            args["endpoint"] = f"{args['endpoint']}?{urlencode(param)}"
 
         args["error_path"] = "response.error"
 
@@ -220,7 +211,4 @@ class ReversePadnsLookup(BaseAction):
 
         self._action_result.add_data(response)
 
-        return self._action_result.set_status(
-            phantom.APP_SUCCESS,
-            consts.ACTION_REVERSE_LOOKUP_SUCCESS_RESPONSE
-        )
+        return self._action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_REVERSE_LOOKUP_SUCCESS_RESPONSE)

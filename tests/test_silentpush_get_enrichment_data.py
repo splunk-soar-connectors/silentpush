@@ -1,6 +1,6 @@
 # File: test_silentpush_get_enrichment_data.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -37,12 +37,7 @@ class SilentpushAction(unittest.TestCase):
             **self.test_json["config"],
             **silentpush_constant.APIKEY_AUTH_CONFIG,
         }
-        self.test_json.update(
-            {
-                "action": "get enrichment data",
-                "identifier": "get_enrichment_data"
-            }
-        )
+        self.test_json.update({"action": "get enrichment data", "identifier": "get_enrichment_data"})
         self.run_job_endpoint = consts.GET_ENRICHMENT_DATA_ENDPOINT
 
         return super().setUp()
@@ -63,9 +58,7 @@ class SilentpushAction(unittest.TestCase):
             ],
         ]
     )
-    def test_get_enrichment_data_valid(
-        self, mock_get, _, resource, value, explain, scan_data
-    ):
+    def test_get_enrichment_data_valid(self, mock_get, _, resource, value, explain, scan_data):
         """Test the valid case for the get enrichment data action.
 
         Patch the get() to run job.
@@ -77,9 +70,7 @@ class SilentpushAction(unittest.TestCase):
 
         mock_get.return_value.status_code = 200
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
-        mock_get.return_value.json.return_value = (
-            silentpush_responses.GET_ENRICHMENT_DATA_VALID_RESP
-        )
+        mock_get.return_value.json.return_value = silentpush_responses.GET_ENRICHMENT_DATA_VALID_RESP
 
         param = {}
         param["explain"] = 1 if explain else 0
@@ -92,8 +83,8 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-            f'{self.test_json["config"]["base_url"]}'
-            f'{self.run_job_endpoint.replace("{{resource}}", resource.lower()).replace("{{value}}", value)}?{urlencode(param)}',
+            f"{self.test_json['config']['base_url']}"
+            f"{self.run_job_endpoint.replace('{{resource}}', resource.lower()).replace('{{value}}', value)}?{urlencode(param)}",
             timeout=consts.REQUEST_DEFAULT_TIMEOUT,
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},

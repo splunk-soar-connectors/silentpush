@@ -1,6 +1,6 @@
 # File: silentpush_test_connectivity.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -33,13 +33,11 @@ class TestConnectivity(BaseAction):
         Step 6: Invoke API
         Step 7: Handle the response
         """
-        self._connector.save_progress(consts.TEST_CONNECTIVITY_START_MESSAGE.format('Silent Push'))
+        self._connector.save_progress(consts.TEST_CONNECTIVITY_START_MESSAGE.format("Silent Push"))
 
         endpoint, method = self.__get_request_url_and_method()
 
-        ret_val, response = self.__make_rest_call(
-            url=endpoint,
-            method=method)
+        ret_val, response = self.__make_rest_call(url=endpoint, method=method)
 
         return self.__handle_response(ret_val, response)
 
@@ -47,16 +45,11 @@ class TestConnectivity(BaseAction):
         """Get request endpoint and method."""
         endpoint = consts.TEST_CONNECTIVITY_ENDPOINT
 
-        return endpoint, 'get'
+        return endpoint, "get"
 
     def __make_rest_call(self, url, method, headers=None, param=None, body=None):
         """Invoke reset API."""
-        args = {
-            "endpoint": url,
-            "action_result": self._action_result,
-            "method": method.lower(),
-            "headers": headers or {}
-        }
+        args = {"endpoint": url, "action_result": self._action_result, "method": method.lower(), "headers": headers or {}}
 
         return self._connector.util.make_rest_call(**args)
 

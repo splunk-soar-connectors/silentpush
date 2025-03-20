@@ -1,21 +1,18 @@
 {% extends 'widgets/widget_template.html' %}
 {% load custom_template %}
-
 {% block custom_title_prop %}
-{% if title_logo %}
-style="background-size: auto 60%; background-position: 50%;
-background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}
+  {% if title_logo %}
+    style="background-size: auto 60%; background-position: 50%;
+    background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"
+  {% endif %}
 {% endblock %}
 {% block title1 %}{{ title1 }}{% endblock %}
 {% block title2 %}{{ title2 }}{% endblock %}
-{% block custom_tools %}
-{% endblock %}
+{% block custom_tools %}{% endblock %}
 {% block widget_content %}
-<!-- Main Start Block -->
-
-<!--File: silentpush_list_ip_information_view.html
-
-Copyright (c) 2024 Splunk Inc.
+  <!-- Main Start Block -->
+  <!--File: silentpush_list_ip_information_view.html
+Copyright (c) 2024-2025 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -28,8 +25,7 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS
 either express or implied. See the License for the specific language governing permissions
 and limitations under the License.
 -->
-
-<style>
+  <style>
     .silentpush a:hover {
         text-decoration: underline;
     }
@@ -97,164 +93,159 @@ and limitations under the License.
         counter-reset: serial-number;
         /* Set the serial number counter to 0 */
     }
-</style>
-<div class="silentpush" style="overflow: auto; width: 100%; height: 100%; padding-left:10px; padding-right:10px">
+  </style>
+  <div class="silentpush"
+       style="overflow: auto;
+              width: 100%;
+              height: 100%;
+              padding-left:10px;
+              padding-right:10px">
     <!-- Main Div -->
-    {% for result in results %} <!-- loop for each result -->
-    {% if not result.data %}
-    <center>
-        <h4 class="wf-h4-style">No data found</h4>
-    </center>
-    {% else %}
-    <!------------------- For each Result ---------------------->
-    {% if result.is_ip_found%}
-    <h3 class="wf-h3-style">IPs Information</h3>
-    <div class="metadata_div">
-        <!--Default View-->
-        <div class="panel-group" id="server-information">
-            <div class="panel">
+    {% for result in results %}
+      <!-- loop for each result -->
+      {% if not result.data %}
+        <center>
+          <h4 class="wf-h4-style">No data found</h4>
+        </center>
+      {% else %}
+        <!------------------- For each Result ---------------------->
+        {% if result.is_ip_found %}
+          <h3 class="wf-h3-style">IPs Information</h3>
+          <div class="metadata_div">
+            <!--Default View-->
+            <div class="panel-group" id="server-information">
+              <div class="panel">
                 <div id="default-view-table" class="panel-collapse collapse in">
-                    <table class="wf-table-horizontal datatable">
-                        <thead>
-                            <tr>
-                                <th>IP</th>
-                                <th>asn</th>
-                                <th>AS Name</th>
-                                <th>asn reputation</th>
-                                <th>takedown reputation</th>
-                                <th>IP Reputation</th>
-                                <th>density</th>
-                                <th>sp risk score</th>
-                                <th>subnet</th>
-                                <th>subnet reputation</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ip in result.data.0.response.ip2asn %}
-                            {% if not ip.error%}
-                            <tr>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'ip' ], 'value': '{{ ip.ip }}' }], 0, {{ container.id }}, null, false);">
-                                        {{ ip.ip }}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'asn' ], 'value': '{{ip.asn}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.asn}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'asname' ], 'value': '{{ip.asname}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.asname}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'asn reputation' ], 'value': '{{ip.asn_reputation}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.asn_reputation}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'asn takedown reputation' ], 'value': '{{ip.asn_takedown_reputation}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.asn_takedown_reputation}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'ip reputation' ], 'value': '{{ip.ip_reputation}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.ip_reputation}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    {{ip.density}}
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'sp risk score' ], 'value': '{{ip.sp_risk_score}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.sp_risk_score}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'subnet' ], 'value': '{{ip.subnet}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.subnet}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="javascript:;"
-                                        onclick="context_menu(this, [{'contains': [ 'subnet reputation' ], 'value': '{{ip.subnet_reputation}}' }], 0, {{ container.id }}, null, false);">
-                                        {{ip.subnet_reputation}}
-                                        &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
-                                    </a>
-                                </td>
-                            </tr>
-                            {% endif%}
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                  <table class="wf-table-horizontal datatable">
+                    <thead>
+                      <tr>
+                        <th>IP</th>
+                        <th>asn</th>
+                        <th>AS Name</th>
+                        <th>asn reputation</th>
+                        <th>takedown reputation</th>
+                        <th>IP Reputation</th>
+                        <th>density</th>
+                        <th>sp risk score</th>
+                        <th>subnet</th>
+                        <th>subnet reputation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ip in result.data.0.response.ip2asn %}
+                        {% if not ip.error %}
+                          <tr>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'ip' ], 'value': '{{ ip.ip }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.ip }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'asn' ], 'value': '{{ ip.asn }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.asn }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'asname' ], 'value': '{{ ip.asname }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.asname }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'asn reputation' ], 'value': '{{ ip.asn_reputation }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.asn_reputation }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'asn takedown reputation' ], 'value': '{{ ip.asn_takedown_reputation }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.asn_takedown_reputation }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'ip reputation' ], 'value': '{{ ip.ip_reputation }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.ip_reputation }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>{{ ip.density }}</td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'sp risk score' ], 'value': '{{ ip.sp_risk_score }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.sp_risk_score }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'subnet' ], 'value': '{{ ip.subnet }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.subnet }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                            <td>
+                              <a href="javascript:;"
+                                 onclick="context_menu(this, [{'contains': [ 'subnet reputation' ], 'value': '{{ ip.subnet_reputation }}' }], 0, {{ container.id }}, null, false);">
+                                {{ ip.subnet_reputation }}
+                                &nbsp;<span class="fa fa-caret-down" style="font-size: smaller;"></span>
+                              </a>
+                            </td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-    {% endif%}
-    <br>
-    {% if result.is_ip_error %}
-    <h3 class="wf-h3-style">Error Response</h3>
-    <div class="metadata_div">
-        <!--Default View-->
-        <div class="panel-group" id="server-information">
-            <div class="panel">
+          </div>
+        {% endif %}
+        <br>
+        {% if result.is_ip_error %}
+          <h3 class="wf-h3-style">Error Response</h3>
+          <div class="metadata_div">
+            <!--Default View-->
+            <div class="panel-group" id="server-information">
+              <div class="panel">
                 <div id="default-view-table" class="panel-collapse collapse in">
-                    <table class="wf-table-horizontal datatable">
-                        <thead>
-                            <tr>
-                                <th style="width: 100px">IP</th>
-                                <th>error</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for ip in result.data.0.response.ip2asn %}
-                            {% if ip.error%}
-                            <tr>
-                                <td>
-                                    {{ip.ip}}
-                                </td>
-                                <td>
-                                    {{ip.error}}
-                                </td>
-                            </tr>
-                            {% endif%}
-                            {% endfor %}
-                        </tbody>
-                    </table>
+                  <table class="wf-table-horizontal datatable">
+                    <thead>
+                      <tr>
+                        <th style="width: 100px">IP</th>
+                        <th>error</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for ip in result.data.0.response.ip2asn %}
+                        {% if ip.error %}
+                          <tr>
+                            <td>{{ ip.ip }}</td>
+                            <td>{{ ip.error }}</td>
+                          </tr>
+                        {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-        </div>
-    </div>
-    {% endif %}
-    {% endif %}
-    {% endfor %} <!-- loop for each result end -->
-</div> <!-- Main Div -->
-
-
-<script>
+          </div>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    <!-- loop for each result end -->
+  </div>
+  <!-- Main Div -->
+  <script>
     $.extend(true, $.fn.dataTable.defaults, {
         "searching": false,
         "bLengthChange": false,
@@ -276,5 +267,6 @@ and limitations under the License.
         order: [],
         pageLength: 5
     });
-</script>
-{% endblock %} <!-- Main Start Block -->
+  </script>
+{% endblock %}
+<!-- Main Start Block -->

@@ -1,6 +1,6 @@
 # File: silentpush_view.py
 #
-# Copyright (c) 2024 Splunk Inc.
+# Copyright (c) 2024-2025 Splunk Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -227,9 +227,8 @@ def display_view_forward_and_reverse_lookup(provides, all_app_runs, context):
         for result in action_results:
             ctx_result = get_ctx_result(result, provides)
             data = result.get_data()
-            if data and not data[0].get('response', {}).get("job_status") and not data[0].get('response', {}).get(
-                    "error"):
-                data = data[0]['response']['records']
+            if data and not data[0].get("response", {}).get("job_status") and not data[0].get("response", {}).get("error"):
+                data = data[0]["response"]["records"]
                 ctx_result["cof"] = any(record.get("rrname") for record in data)
                 ctx_result["padns"] = any(record.get("query") for record in data)
             if not ctx_result:
