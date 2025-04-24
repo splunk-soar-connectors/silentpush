@@ -1653,3 +1653,26 @@ VAULT_META_INFO = [
 ]
 
 IMAGE_RESPONSE = b"/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJTEUAAQEAAAHIAAAAAAQwAABtbnRyUkdCIFhZWiAH4AABAAEAAAAAAABhY3N8A"
+
+GET_DATA_EXPORT_VALID_RESP = """
+indicator
+www1.gggatat456.com
+ppp.gggatat456.com
+www.profile-keybord.com
+inretsyvipclubapp.com
+etsyvipclub.xyz
+answerrsdo.shop
+ceip.cloud
+o6ngt.top
+indo39oke.lol
+scottish-images.com
+"""
+
+GET_EXPORT_DATA_INVALID_RESPONSE = {
+    "errors": [
+        {
+            "message": "invalid file name",
+            "code": "invalid"
+        }
+    ]
+}

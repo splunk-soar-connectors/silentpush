@@ -9400,6 +9400,96 @@
                 "title": "Live URL Screenshot"
             },
             "versions": "EQ(*)"
+        },
+        {
+            "action": "get data export",
+            "identifier": "get_data_export",
+            "description": "Get data for Organisation feeds and download as csv file in vault",
+            "type": "investigate",
+            "read_only": true,
+            "parameters": {
+                "feed_url": {
+                    "description": "feed_url",
+                    "required": true,
+                    "order": 0,
+                    "data_type": "string"
+                }
+            },
+            "output": [
+                {
+                    "data_path": "action_result.status",
+                    "data_type": "string",
+                    "example_values": [
+                        "success",
+                        "failed"
+                    ]
+                },
+                {
+                    "data_path": "action_result.parameter.feed_url",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv"
+                    ],
+                    "column_order": 0,
+                    "column_name": "Feed URL"
+                },
+                {
+                    "data_path": "action_result.data.*.vault_id",
+                    "data_type": "string",
+                    "example_values": [
+                        "https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv"
+                    ],
+                    "column_order": 1,
+                    "column_name": "Vault_ID",
+                    "contains":[
+                        "vault id"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.errors.*.code",
+                    "data_type": "string",
+                    "example_values": [
+                        "invalid"
+                    ]
+                },
+                {
+                    "data_path": "action_result.data.*.errors.*.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "invalid file format"
+                    ]
+                },
+                {
+                    "data_path": "action_result.summary",
+                    "data_type": "string"
+                },
+                {
+                    "data_path": "action_result.message",
+                    "data_type": "string",
+                    "example_values": [
+                        "Successfully downloaded feed data"
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                },
+                {
+                    "data_path": "summary.total_objects_successful",
+                    "data_type": "numeric",
+                    "example_values": [
+                        1
+                    ]
+                }
+            ],
+            "render": {
+                "type": "table",
+                "title": "Get Data Export"
+            },
+            "versions": "EQ(*)"
         }
     ]
 }

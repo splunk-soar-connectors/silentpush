@@ -20,6 +20,7 @@ SUCCESS_TEST_CONNECTIVITY = "Test Connectivity Passed"
 SUCCESS_ON_POLL = "Poll executed successfully"
 ERROR_TEST_CONNECTIVITY = "Test Connectivity Failed"
 REQUEST_DEFAULT_TIMEOUT = 60
+EXPORT_REQUEST_DEFAULT_TIMEOUT = 180
 
 ACTION_LIST_IP_INFO_SUCCESS_RESPONSE = "Successfully fetched IPs' information"
 ACTION_DOMAIN_INFRATAGS_SUCCESS_RESPONSE = "Successfully fetched domains' infratags"
@@ -41,6 +42,7 @@ ACTION_REVERSE_LOOKUP_SUCCESS_RESPONSE = "Successfully performed reverse lookup"
 ACTION_DENSITY_LOOKUP_SUCCESS_RESPONSE = "Successfully performed density lookup"
 ACTION_SEARCH_SCAN_DATA_SUCCESS_RESPONSE = "Successfully fetched scan data"
 ACTION_FUTURE_ATTACK_FEED_SUCCESS_RESPONSE = "Successfully fetched future attack feed"
+ACTION_GET_DATA_EXPORT_SUCCESS_RESPONSE = "Successfully downloaded feed data"
 
 ERROR_INVALID_INT_PARAM = "Please provide a valid integer value in the '{key}' parameter"
 ERROR_NEG_INT_PARAM = "Please provide a positive integer value in the '{key}' parameter"
