@@ -15,7 +15,7 @@
     "utctime_updated": "2024-04-02T11:55:08.841379Z",
     "package_name": "phantom_silentpush",
     "main_module": "silentpush_connector.py",
-    "min_phantom_version": "6.2.0",
+    "min_phantom_version": "6.3.0",
     "fips_compliant": true,
     "latest_tested_versions": [
         "Silent Push Cloud v4.1, May 02, 2024"
@@ -9405,11 +9405,12 @@
             "action": "get data export",
             "identifier": "get_data_export",
             "description": "Get data for Organisation feeds and download as csv file in vault",
+            "verbose": "The Feed URL can be obtained from the Silent Push platform. Go to Data Export > Organization Exports then for a specific feed select Automate Export and click on 'Copy API Endpoint' to get the feed URL.",
             "type": "investigate",
             "read_only": true,
             "parameters": {
                 "feed_url": {
-                    "description": "feed_url",
+                    "description": "Feed URL",
                     "required": true,
                     "order": 0,
                     "data_type": "string"
