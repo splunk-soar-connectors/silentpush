@@ -1705,7 +1705,7 @@ action_result.data.\*.response.screenshot.response | numeric | | 200 |
 action_result.data.\*.response.screenshot.url | string | `url` | http://www.silentpush.com |
 action_result.summary.name | string | | http://www.youtube.com_screenshot.jpg |
 action_result.summary.size | numeric | | 49130 |
-action_result.summary.vault_id | string | | 614467d9d91eb84a9696aa3378e0e3fdf94c00ab |
+action_result.summary.vault_id | string | | 666666d9d91111111696aa111111e311111100ab |
 action_result.summary.id | numeric | | 8 |
 action_result.summary.container_id | numeric | | 1 |
 action_result.message | string | | Successfully fetched screenshot from live URL |
@@ -1734,7 +1734,7 @@ DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
 --------- | ---- | -------- | --------------
 action_result.status | string | | success failed |
 action_result.parameter.feed_url | string | | https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv |
-action_result.data.\*.vault_id | string | `vault id` | https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv |
+action_result.data.\*.vault_id | string | `vault id` | 666666d9d91111111696aa111111e311111100ab |
 action_result.data.\*.errors.\*.code | string | | invalid |
 action_result.data.\*.errors.\*.message | string | | invalid file format |
 action_result.summary | string | | |
