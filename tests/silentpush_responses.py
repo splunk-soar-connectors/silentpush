@@ -1668,11 +1668,4 @@ indo39oke.lol
 scottish-images.com
 """
 
-GET_EXPORT_DATA_INVALID_RESPONSE = {
-    "errors": [
-        {
-            "message": "invalid file name",
-            "code": "invalid"
-        }
-    ]
-}
+GET_EXPORT_DATA_INVALID_RESPONSE = {"errors": [{"message": "invalid file name", "code": "invalid"}]}

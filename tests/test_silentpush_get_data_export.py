@@ -19,8 +19,8 @@ from unittest.mock import patch
 
 import silentpush_consts as consts
 from silentpush_connector import SilentpushConnector
-from . import silentpush_constant, silentpush_responses
 
+from . import silentpush_constant, silentpush_responses
 
 
 @patch("silentpush_utils.requests.get")
@@ -34,13 +34,15 @@ class SilentpushAction(unittest.TestCase):
         self.test_json.update({"action": "get data export", "identifier": "get_data_export"})
 
         return super().setUp()
-    
+
     def test_get_data_export_valid(self, mock_get):
         """Test the valid case for the get data export action.
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [{"feed_url": "https://app.silentpush.com/app/v1/export/organization-exports/294ed3e2-112d-424e-9a93-9e4e1a071f98_indicators.csv"}]
+        self.test_json["parameters"] = [
+            {"feed_url": "https://app.silentpush.com/app/v1/export/organization-exports/294ed3e2-112d-424e-9a93-9e4e1a071f98_indicators.csv"}
+        ]
 
         # Define the side_effect function
         def mock_vault_response(*args, **kwargs):
@@ -59,18 +61,20 @@ class SilentpushAction(unittest.TestCase):
         self.assertEqual(ret_val["status"], "success")
 
         mock_get.assert_called_with(
-                "https://app.silentpush.com/app/v1/export/organization-exports/294ed3e2-112d-424e-9a93-9e4e1a071f98_indicators.csv",
-                timeout=consts.EXPORT_REQUEST_DEFAULT_TIMEOUT,
-                headers = {"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
-                verify=False,
-            )
-     
+            "https://app.silentpush.com/app/v1/export/organization-exports/294ed3e2-112d-424e-9a93-9e4e1a071f98_indicators.csv",
+            timeout=consts.EXPORT_REQUEST_DEFAULT_TIMEOUT,
+            headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
+            verify=False,
+        )
+
     def test_get_data_export_invalid(self, mock_get):
         """Test the invalid case for the get data export action.
 
         Patch the get() to run job.
         """
-        self.test_json["parameters"] = [{"feed_url": "https://app.silentpush.com/app/v1/export/organization-exports/222222-2222-2222-2222-22222222222_indicators.txt"}]
+        self.test_json["parameters"] = [
+            {"feed_url": "https://app.silentpush.com/app/v1/export/organization-exports/222222-2222-2222-2222-22222222222_indicators.txt"}
+        ]
 
         mock_get.return_value.status_code = 400
         mock_get.return_value.headers = silentpush_constant.DEFAULT_JSON_HEADERS
@@ -86,7 +90,7 @@ class SilentpushAction(unittest.TestCase):
             verify=False,
             headers={"X-API-KEY": silentpush_constant.DUMMY_API_TOKEN},
         )
-    
+
 
 class MockResponse:
     """A helper class to create a mock response object for testing purposes.
@@ -99,7 +103,7 @@ class MockResponse:
         text (str): The content of the mock response as a string.
     """
 
-    def __init__(self, status_code, headers, text=None, content=None, timeout = 30, verify = False):
+    def __init__(self, status_code, headers, text=None, content=None, timeout=30, verify=False):
         """Initialize a new MockResponse object.
 
         Args:
@@ -109,5 +113,3 @@ class MockResponse:
         self.status_code = status_code
         self.headers = headers
         self.text = text
-    
-   

@@ -13,10 +13,10 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-from silentpush_consts import EXECUTION_START_MESSAGE
-from actions import BaseAction
 import phantom.app as phantom
 
+from actions import BaseAction
+from silentpush_consts import EXECUTION_START_MESSAGE
 
 
 class GetDataExport(BaseAction):
@@ -34,7 +34,7 @@ class GetDataExport(BaseAction):
         Step 7: Handle the response
         """
         self._connector.save_progress(EXECUTION_START_MESSAGE.format("get_data_export"))
-        
+
         ret_val, response = self.__make_rest_call(url=self._param["feed_url"], method="get")
 
         return self.__handle_response(ret_val, response)
@@ -51,10 +51,9 @@ class GetDataExport(BaseAction):
         args["error_path"] = "errors.0.message"
 
         return self._connector.util.make_rest_call(**args)
-    
 
     def __handle_response(self, ret_val, response):
-        """Process response received from the third party API""" 
+        """Process response received from the third party API"""
         if phantom.is_fail(ret_val):
             self._action_result.add_data(response)
         else:

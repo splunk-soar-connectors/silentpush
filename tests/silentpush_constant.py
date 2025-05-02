@@ -24,7 +24,7 @@ FORM_URLENCODED = "application/x-www-form-urlencoded"
 DEFAULT_FORM_URLENCODED_HEADERS = {"Content-Type": FORM_URLENCODED}
 IMAGE_CONTENT_TYPE = "image/jpeg"
 DEFAULT_IMAGE_HEADERS = {"Content-Type": IMAGE_CONTENT_TYPE}
-DEFAULT_CSV_HEADERS={"Content-Type":"binary/octet-stream"}
+DEFAULT_CSV_HEADERS = {"Content-Type": "binary/octet-stream"}
 
 cipher_text = encryption_helper.encrypt("<dummy_api_token>", DEFAULT_ASSET_ID)
 
