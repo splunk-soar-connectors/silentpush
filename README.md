@@ -4,7 +4,7 @@ Publisher: Splunk Community \
 Connector Version: 1.0.1 \
 Product Vendor: Silent Push \
 Product Name: Silent Push \
-Minimum Product Version: 6.2.0
+Minimum Product Version: 6.3.0
 
 This connector integrates with the Silent Push system to gain insights into domain/IP information, reputations, enrichment, and infratag related details. It also provides functionality to live-scan URLs and take screenshots of them. Additionally, it allows fetching future attack feeds from the Silent Push system
 
@@ -38,7 +38,8 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 [search scan data](#action-search-scan-data) - Search the Silent Push scan data repositories \
 [live url scan](#action-live-url-scan) - Scan a URL to get metadata on what it is hosted \
 [get indicators of future attack feed](#action-get-indicators-of-future-attack-feed) - Get indicators of future attack feed from the Silent Push platform \
-[live url screenshot](#action-live-url-screenshot) - This action generate a screenshot for a URL and store it inside the vault
+[live url screenshot](#action-live-url-screenshot) - This action generate a screenshot for a URL and store it inside the vault \
+[get data export](#action-get-data-export) - Get data for Organisation feeds and download as csv file in vault
 
 ## action: 'test connectivity'
 
@@ -1704,11 +1705,40 @@ action_result.data.\*.response.screenshot.response | numeric | | 200 |
 action_result.data.\*.response.screenshot.url | string | `url` | http://www.silentpush.com |
 action_result.summary.name | string | | http://www.youtube.com_screenshot.jpg |
 action_result.summary.size | numeric | | 49130 |
-action_result.summary.vault_id | string | | 614467d9d91eb84a9696aa3378e0e3fdf94c00ab |
+action_result.summary.vault_id | string | | 666666d9d91111111696aa111111e311111100ab |
 action_result.summary.id | numeric | | 8 |
 action_result.summary.container_id | numeric | | 1 |
 action_result.message | string | | Successfully fetched screenshot from live URL |
 action_result.summary | string | | |
+summary.total_objects | numeric | | 1 |
+summary.total_objects_successful | numeric | | 1 |
+
+## action: 'get data export'
+
+Get data for Organisation feeds and download as csv file in vault
+
+Type: **investigate** \
+Read only: **True**
+
+The Feed URL can be obtained from the Silent Push platform. Go to Data Export > Organization Exports then for a specific feed select Automate Export and click on 'Copy API Endpoint' to get the feed URL.
+
+#### Action Parameters
+
+PARAMETER | REQUIRED | DESCRIPTION | TYPE | CONTAINS
+--------- | -------- | ----------- | ---- | --------
+**feed_url** | required | Feed URL | string | |
+
+#### Action Output
+
+DATA PATH | TYPE | CONTAINS | EXAMPLE VALUES
+--------- | ---- | -------- | --------------
+action_result.status | string | | success failed |
+action_result.parameter.feed_url | string | | https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv |
+action_result.data.\*.vault_id | string | `vault id` | 666666d9d91111111696aa111111e311111100ab |
+action_result.data.\*.errors.\*.code | string | | invalid |
+action_result.data.\*.errors.\*.message | string | | invalid file format |
+action_result.summary | string | | |
+action_result.message | string | | Successfully downloaded feed data |
 summary.total_objects | numeric | | 1 |
 summary.total_objects_successful | numeric | | 1 |
 

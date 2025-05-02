@@ -14,11 +14,16 @@
 # and limitations under the License.
 
 import json
+import re
+import tempfile
 import time
+import uuid
 
 import phantom.app as phantom
+import phantom.rules as ph_rules
 import requests
 from bs4 import BeautifulSoup
+from phantom.vault import Vault
 
 import silentpush_consts as consts
 
@@ -116,10 +121,26 @@ class SilentpushUtils:
             else:
                 return RetVal(phantom.APP_SUCCESS, resp_json)
 
+        if self._connector.get_action_identifier() == "get_data_export":
+            if 400 == r.status_code:
+                if isinstance(resp_json, dict) and error_path:
+                    return RetVal(
+                        action_result.set_status(
+                            phantom.APP_ERROR, f"Failed to fetch feed data: {self.find_value_by_pattern(resp_json, error_path) or resp_json}"
+                        ),
+                        resp_json,
+                    )
+
         # You should process the error returned in the json
         message = "Error from server. Status Code: {} Data from server: {}".format(r.status_code, r.text.replace("{", "{{").replace("}", "}}"))
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message))
+
+    def extract_uuid(self, url):
+        match = re.search(r"/([a-f0-9A-F\-]{36})", url)
+        if match:
+            return match.group(1)
+        return None
 
     def find_value_by_pattern(self, data, pattern):
         """Find value in JSON data using pattern."""
@@ -143,7 +164,7 @@ class SilentpushUtils:
 
         return current_data
 
-    def _process_response(self, r, action_result, error_path=None):
+    def _process_response(self, r, action_result, error_path=None, url=None):
         # store the r_text in debug data, it will get dumped in the logs if the action fails
         if hasattr(action_result, "add_debug_data"):
             action_result.add_debug_data({"r_status_code": r.status_code})
@@ -167,12 +188,38 @@ class SilentpushUtils:
         if not r.text:
             return self._process_empty_response(r, action_result)
 
+        if self._connector.get_action_identifier() == "get_data_export":
+            ret_val, vault_id = self._add_response_to_vault(r.text, action_result, url)
+            return RetVal(ret_val, vault_id)
         # everything else is actually an error at this point
         message = "Can't process response from server. Status Code: {} Data from server: {}".format(
             r.status_code, r.text.replace("{", "{{").replace("}", "}}")
         )
 
         return RetVal(action_result.set_status(phantom.APP_ERROR, message), None)
+
+    def _add_response_to_vault(self, response, action_result, endpoint):
+        """Add response to vault"""
+        self._connector.save_progress("Adding data to vault")
+        if not response:
+            message = "No data found"
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Error adding file to the vault: {message}"), None)
+
+        with tempfile.NamedTemporaryFile(mode="w", dir=Vault.get_vault_tmp_dir(), delete=False, encoding="utf-8") as f:
+            tmp_file_path = f.name
+            f.write(response)
+        feed_uuid = self.extract_uuid(endpoint) or uuid.uuid1()
+        file_name = f"feed_{feed_uuid}.csv"
+        self._connector.save_progress(f"Filename for vault attachment: {file_name}")
+        success, msg, vault_id = ph_rules.vault_add(
+            container=self._connector.get_container_id(),
+            file_location=tmp_file_path,
+            file_name=file_name,
+        )
+        if not success:
+            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Error adding file to the vault, Error: {msg}"), None)
+
+        return RetVal(action_result.set_status(phantom.APP_SUCCESS, consts.ACTION_GET_DATA_EXPORT_SUCCESS_RESPONSE), vault_id)
 
     def make_rest_call(self, endpoint, action_result, method="get", error_path=None, **kwargs):
         resp_json = None
@@ -185,6 +232,9 @@ class SilentpushUtils:
         # Create a URL to connect to
         url = f"{consts.BASE_URL.strip('/')}{endpoint}"
 
+        if self._connector.get_action_identifier() == "get_data_export":
+            url = endpoint
+
         kwargs["headers"] = {**self.get_auth_headers(self._connector.config), **(kwargs.get("headers") or {})}
 
         status, r = self.invoke_api(request_func, url, counter=0, **kwargs)
@@ -192,7 +242,7 @@ class SilentpushUtils:
         if not status:
             return RetVal(action_result.set_status(phantom.APP_ERROR, f"Error Connecting to server. Details: {r!s}"), resp_json)
 
-        return self._process_response(r, action_result, error_path)
+        return self._process_response(r, action_result, error_path, url)
 
     def make_rest_call_for_image(self, url, action_result):
         try:
@@ -208,10 +258,11 @@ class SilentpushUtils:
             return action_result.set_status(phantom.APP_ERROR, f"Failed to download screenshot. Details: {e}")
 
     def invoke_api(self, request_func, url, counter=0, **kwargs):
+        timeout = consts.REQUEST_DEFAULT_TIMEOUT
+        if self._connector.get_action_identifier() == "get_data_export":
+            timeout = consts.EXPORT_REQUEST_DEFAULT_TIMEOUT
         try:
-            r = request_func(
-                url, timeout=consts.REQUEST_DEFAULT_TIMEOUT, verify=self._connector.config.get("verify_server_cert", False), **kwargs
-            )
+            r = request_func(url, timeout=timeout, verify=self._connector.config.get("verify_server_cert", False), **kwargs)
             return True, r
         except Exception as e:
             if "ConnectTimeoutError" in str(e) and counter < consts.MAX_RETRIES:
