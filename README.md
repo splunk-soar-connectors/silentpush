@@ -1,7 +1,7 @@
 # Silent Push
 
 Publisher: Splunk Community \
-Connector Version: 1.0.1 \
+Connector Version: 1.1.0 \
 Product Vendor: Silent Push \
 Product Name: Silent Push \
 Minimum Product Version: 6.3.0

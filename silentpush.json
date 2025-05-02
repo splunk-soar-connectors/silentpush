@@ -11,8 +11,8 @@
     "product_version_regex": ".*",
     "publisher": "Splunk Community",
     "license": "Copyright (c) 2024-2025 Splunk Inc.",
-    "app_version": "1.0.1",
-    "utctime_updated": "2024-04-02T11:55:08.841379Z",
+    "app_version": "1.1.0",
+    "utctime_updated": "2025-05-02T11:01:56.723311Z",
     "package_name": "phantom_silentpush",
     "main_module": "silentpush_connector.py",
     "min_phantom_version": "6.3.0",
@@ -9442,7 +9442,7 @@
                     ],
                     "column_order": 1,
                     "column_name": "Vault_ID",
-                    "contains":[
+                    "contains": [
                         "vault id"
                     ]
                 },
