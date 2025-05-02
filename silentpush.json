@@ -18,7 +18,7 @@
     "min_phantom_version": "6.3.0",
     "fips_compliant": true,
     "latest_tested_versions": [
-        "Silent Push Cloud v4.1, May 02, 2024"
+        "Silent Push Cloud v4.1, April 23, 2025"
     ],
     "app_wizard_version": "1.0.0",
     "configuration": {
@@ -9351,7 +9351,7 @@
                     "data_path": "action_result.summary.vault_id",
                     "data_type": "string",
                     "example_values": [
-                        "614467d9d91eb84a9696aa3378e0e3fdf94c00ab"
+                        "666666d9d91111111696aa111111e311111100ab"
                     ]
                 },
                 {
@@ -9438,7 +9438,7 @@
                     "data_path": "action_result.data.*.vault_id",
                     "data_type": "string",
                     "example_values": [
-                        "https://abc.test.com/api/v2/export/organisation-feeds/5000000-4444-aaaa-bbbb-222222222222_enrich.csv"
+                        "666666d9d91111111696aa111111e311111100ab"
                     ],
                     "column_order": 1,
                     "column_name": "Vault_ID",
