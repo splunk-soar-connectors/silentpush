@@ -13,7 +13,7 @@
 # either express or implied. See the License for the specific language governing permissions
 # and limitations under the License.
 
-from urllib.parse import urlencode
+from urllib.parse import quote, urlencode
 
 import phantom.app as phantom
 
@@ -192,7 +192,7 @@ class ForwardPadnsLookup(BaseAction):
 
         endpoint = consts.FORWARD_PADNS_LOOKUP_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace("{{##}}".replace("##", parameter), str(self._param.get(parameter)))
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), quote(str(self._param.get(parameter)), safe="").replace(".", "%2E"))
 
         return endpoint, "get"
 

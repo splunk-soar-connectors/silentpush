@@ -14,6 +14,7 @@
 # and limitations under the License.
 
 from ipaddress import IPv4Address, ip_address
+from urllib.parse import quote
 
 import phantom.app as phantom
 
@@ -95,7 +96,7 @@ class ListIpInformation(BaseAction):
 
     def __get_request_url_and_method(self, resource):
         """Get request endpoint and method."""
-        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace("{{resource}}", str(resource))
+        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace("{{resource}}", quote(str(resource), safe="").replace(".", "%2E"))
 
         return endpoint, "post"
 
