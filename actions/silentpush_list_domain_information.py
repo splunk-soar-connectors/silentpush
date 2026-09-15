@@ -128,7 +128,7 @@ class ListDomainInformation(BaseAction):
         elif request == "risk_score":
             endpoint = consts.LIST_DOMAIN_ENDPOINT_RISK_SCORE_ENDPOINT
         elif request == "live_whois":
-            endpoint = consts.LIST_DOMAIN_ENDPOINT_WHOIS_INFO_ENDPOINT.format(quote(str(query_param), safe=""))
+            endpoint = consts.LIST_DOMAIN_ENDPOINT_WHOIS_INFO_ENDPOINT.format(quote(str(query_param), safe="").replace(".", "%2E"))
             method = "get"
 
         return endpoint, method

@@ -96,7 +96,7 @@ class ListIpInformation(BaseAction):
 
     def __get_request_url_and_method(self, resource):
         """Get request endpoint and method."""
-        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace("{{resource}}", quote(str(resource), safe=""))
+        endpoint = consts.LIST_IP_INFORMATION_ENDPOINT.replace("{{resource}}", quote(str(resource), safe="").replace(".", "%2E"))
 
         return endpoint, "post"
 

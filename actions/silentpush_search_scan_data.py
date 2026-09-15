@@ -118,7 +118,7 @@ class SearchScanData(BaseAction):
 
         endpoint = consts.SEARCH_SCAN_DATA_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace("{{##}}".replace("##", parameter), quote(str(self._param.get(parameter)), safe=""))
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), quote(str(self._param.get(parameter)), safe="").replace(".", "%2E"))
 
         return endpoint, "post"
 

@@ -95,7 +95,7 @@ class DensityLookup(BaseAction):
 
         endpoint = consts.DENSITY_LOOKUP_ENDPOINT
         for parameter in parameters:
-            endpoint = endpoint.replace("{{##}}".replace("##", parameter), quote(str(self._param.get(parameter)), safe=""))
+            endpoint = endpoint.replace("{{##}}".replace("##", parameter), quote(str(self._param.get(parameter)), safe="").replace(".", "%2E"))
 
         return endpoint, "get"
 
