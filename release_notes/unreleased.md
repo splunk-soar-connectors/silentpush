@@ -1,2 +1,1 @@
 **Unreleased**
-* URL path parameters are encoded before Silent Push API requests.
