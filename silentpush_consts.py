@@ -67,7 +67,7 @@ MAX_LIMIT_VALUE = 10000
 # endpoints
 BASE_URL = "https://api.silentpush.com"
 EXPORT_DOWNLOAD_HOST = "app.silentpush.com"
-EXPORT_DOWNLOAD_PATH_PREFIX = "/app/v1/export/"
+EXPORT_DOWNLOAD_PATH_PREFIX = "/api/v1/export/"
 TEST_CONNECTIVITY_ENDPOINT = "/api/v1/merge-api/explore/domain/whois/silentpush.com"
 LIST_DOMAIN_INFORMATION_ENDPOINT = "/api/v1/merge-api/explore/bulk/domaininfo"
 LIST_DOMAIN_ENDPOINT_RISK_SCORE_ENDPOINT = "/api/v1/merge-api/explore/bulk/domain/riskscore"
