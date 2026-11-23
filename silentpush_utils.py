@@ -285,7 +285,6 @@ class SilentpushUtils:
                     resp_json,
                 )
             url = endpoint
-            kwargs["allow_redirects"] = False
 
         kwargs["headers"] = {**self.get_auth_headers(self._connector.config), **(kwargs.get("headers") or {})}
 
